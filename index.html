@@ -4,43 +4,47 @@
 	<title></title>
 	<link rel="stylesheet" type="text/css" href="css/bootstrap.min.css">
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
-
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
+	<!-- <script type="text/javascript" src="js/canvas.js"></script> -->
 	
 </head>
 <body>
+	<!-- <canvas id="my-canvas"></canvas> -->
 
 
 	<div class="container game-wrapper">
-		<div class="header text-center"><img src='images/header.png'></div>
-		<div class="row">
+	<div class="header text-center">
+			<img src='images/header.png'></div>
+		<div class="row top-margin">
 			<div class="the-table col-sm-12">
 				<div class="col-sm-12 dealer-hand-wrapper">
-					<div class="col-sm-11 dealer-cards">
-						<div class="col-sm-1 card card-six"></div>
-						<div class="col-sm-1 card card-five"></div>
-						<div class="col-sm-1 card card-four"></div>
-						<div class="col-sm-1 card card-three"></div>
-						<div class="col-sm-1 card card-two"></div>
-						<div class="col-sm-1 card card-one"></div>
-					</div>
 					<div class="col-sm-1 dealer-total">
-						dealer total <span class="dealer-total-number">0</span>
+						dealer total <span class="dealer-total-number"></span>
+					</div>					
+					<div class="col-sm-11 dealer-cards">
+						<div class="col-sm-1 card card-1"></div>
+						<div class="col-sm-1 card card-2"></div>
+						<div class="col-sm-1 card card-3"></div>
+						<div class="col-sm-1 card card-4"></div>
+						<div class="col-sm-1 card card-5"></div>
+						<div class="col-sm-1 card card-6"></div>
 					</div>
 				</div>
 
 				<div class="col-sm-12 player-hand-wrapper">
 					<div class="col-sm-1 player-total">
-						player total <span class="player-total-number">0</span>
+						player total <span class="player-total-number"></span>
+						<br><span class="player1-total-number"></span>
+						<br><span class="player2-total-number"></span>
 					</div>
 					<div class="col-sm-11 player-cards">
-						<div class="col-sm-1 card card-one"></div>
-						<div class="col-sm-1 card card-two"></div>
-						<div class="col-sm-1 card card-three"></div>
-						<div class="col-sm-1 card card-four"></div>
-						<div class="col-sm-1 card card-five"></div>
-						<div class="col-sm-1 card card-six"></div>
+						<div class="col-sm-1 card card-1"></div>
+						<div class="col-sm-1 card card-2"></div>
+						<div class="col-sm-1 card card-3"></div>
+						<div class="col-sm-1 card card-4"></div>
+						<div class="col-sm-1 card card-5"></div>
+						<div class="col-sm-1 card card-6"></div>
 					</div>
 				</div>
 				<div class="row">
@@ -59,9 +63,9 @@
 					<div class="col-sm-2">
 						<button class="doubleDown-button">DOUBLE DOWN</button>
 					</div>
-					<div class="col-sm-2">
+<!-- 					<div class="col-sm-2">
 						<button class="shuffle-button">SHUFFLE</button>
-					</div>
+					</div> -->
 				</div>			
 			</div>
 		</div>
