@@ -9,12 +9,12 @@ var secondPair=[];
 var dealerCard2
 var valueOfDC2
 
-
 var hitCounter = 0;
 //  0: deal     
 //  1: hit/stand/doubledown     
 //  2: 
 //  3: math for dealer two cards
+//  4: double down (doubling the bet)
 //  6: jquery splitting delay(split)
 //  7: 2nd pair total calc(split) 
 //	   and 1st pair hitting
@@ -24,12 +24,15 @@ var hitCounter = 0;
 
 var placeBet = true;
 var myCoin = 5000;
-var bet = 0; // later get input from user
+var myBet = 0; // later get input from user
+var didIWin = false;
 
 $(document).ready(function(){
 	$('.deal-button').click(function(){
-		if((!hitCounter)&&(placeBet)){
+		if((!hitCounter)&&(myBet>0)){
 			reset();
+			// theDeck[0]='1s'
+			// theDeck[1]='10h'			
 			playerHands.push(theDeck.shift());
 			playerHands.push(theDeck.shift());
 			dealerHands.push(theDeck.shift());
@@ -41,13 +44,12 @@ $(document).ready(function(){
 			calculateTotal(playerHands, 'player');
 			calculateTotal(dealerHands, 'dealer');
 			hitCounter=1;
-			if(playerHands===21){
+			if(calculateTotal(playerHands, 'player')===21){
 				placeCard('dealer', 2, dealerHands[1]);
 			checkWin();
 			}
 		}
 	});
-
 
 	$('.hit-button').click(function(){
 		if(hitCounter===1){
@@ -66,7 +68,7 @@ $(document).ready(function(){
 			}
 			//first card during split			
 		}else if(hitCounter===7){
-			console.log('ha')
+			// console.log('aaa')
 			if(calculateTotal(firstPair,'player') < 21){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
@@ -119,7 +121,8 @@ $(document).ready(function(){
 
 	$('.split-button').click(function(){       // you only get one hit after split
 		if((hitCounter===1)
-			&&(Number(playerHands[0].slice(0, -1)))===(Number(playerHands[1].slice(0, -1))))
+			&&(Number(playerHands[0].slice(0, -1))===1)
+			&&(Number(playerHands[1].slice(0, -1))===1))
 			{
 			placeCard('player', 4, playerHands[1]);
 			$('.player-cards .card-2').html('');
@@ -136,11 +139,21 @@ $(document).ready(function(){
 			hitCounter = 7;      // split condition
 			calculateTotal(secondPair, 'player2');	
 			// console.log(firstPair)
-			
+			placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);		
+			var	dealerTotal = calculateTotal(dealerHands, 'dealer');
+			while(dealerTotal<17){
+				dealerHands.push(theDeck.shift())
+				var lastCardIndex = dealerHands.length - 1;
+				var slotForNewCard = dealerHands.length;
+				placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
+				dealerTotal = calculateTotal(dealerHands, 'dealer');}
+			checkWin2();
 		}		
 	});
 
 	$('.doubleDown-button').click(function(){
+		myBet * 2;
+		displayMoney();
 		if(hitCounter===1){
 			if(calculateTotal(playerHands,'player') < 21){
 				playerHands.push(theDeck.shift());		
@@ -164,15 +177,44 @@ $(document).ready(function(){
 						dealerTotal = calculateTotal(dealerHands, 'dealer');
 					}
 				}
+				hitCounter = 4
 			checkWin();
 			}		
 		}
 	});
+	$('.button10').click(function(){
+		if(myCoin >= 10){myBet += 10;
+		myCoin -= 10}
+		displayMoney();
+	})
+	$('.button50').click(function(){
+		if(myCoin >= 50){myBet += 50; 
+		myCoin -= 50}
+		displayMoney();
+	})
+	$('.button100').click(function(){
+		if(myCoin >= 100){myBet += 100;
+		myCoin -= 100}
+		displayMoney();
+	})		
+	$('.button500').click(function(){
+		if(myCoin >= 500){myBet += 500; 
+		myCoin -= 500}
+		displayMoney();
+	})
 
-	// $('.shuffle-button').click(function(){
-	// 	shuffleDeck();
-	// });
+	$('.reset-bet').click(function(){
+		myCoin += myBet;
+		myBet = 0;
+		displayMoney();
+	})
+
 });
+
+function displayMoney(){
+	$('#myCoin').html('Coins: ' + myCoin);
+	$('#betAmount').html('Bet Amount: ' + myBet);
+}
 // var dealerTotal = 0;
 
 function createDeck(numberOfDecks){
@@ -271,8 +313,7 @@ function calculateTotal(hand, who){
 	if(hitCounter>6){
 		$('.player-total-number').text("");			
 	}
-	return total
-}
+	return total}
 function checkWin(){
 	hitCounter=2;
 	var playerTotal = calculateTotal(playerHands, 'player');
@@ -280,17 +321,28 @@ function checkWin(){
 	if(playerTotal>21){
 			console.log('dealer wins')
 	}else if(dealerTotal>21){
-			console.log('you win')
+		myCoin += (myBet*2)
+			console.log('you won ' + myBet)
 	}else{
 		if(playerTotal>dealerTotal){
-			console.log('you win')
+			myCoin += (myBet*2);
+			if(playerHands.length ===2){
+			myCoin += myBet/2;
+			console.log('blackjack you won +' + myBet/2)
+			}
+			console.log('you won ' + myBet)
 		}else if(dealerTotal>playerTotal){
 			console.log('dealer wins')
 		}else{
-			console.log('push')
+			myCoin += myBet
 		}
-	}
+	};
+
+
+
 	hitCounter = 0;
+	myBet = 0;
+	displayMoney();
 }
 
 function checkWin2(){
@@ -302,13 +354,17 @@ function checkWin2(){
 			console.log('first pair: dealer wins')
 	}else if(dealerTotal>21){
 			console.log('first pair: you win')
+			myCoin += (myBet*2)
 	}else{
 		if(player1>dealerTotal){
 			console.log('first pair: you win')
+			myCoin += (myBet*2)
 		}else if(dealerTotal>player1){
 			console.log('first pair: dealer wins')
+			
 		}else{
 			console.log('first pair: push')
+			myCoin += myBet
 		}
 	};
 
@@ -316,15 +372,21 @@ function checkWin2(){
 			console.log('second pair: dealer wins')
 	}else if(dealerTotal>21){
 			console.log('second pair: you win')
+			myCoin += (myBet*2)
 	}else{
 		if(player2>dealerTotal){
 			console.log('second pair: you win')
+			myCoin += (myBet*2)
 		}else if(dealerTotal>player2){
 			console.log('second pair: dealer wins')
 		}else{
 			console.log('second pair: push')
+			myCoin += myBet
 		}
 	};
+	Coins -= myBet
+	myBet = 0;
+	displayMoney();
 }
 
 function reset(){
@@ -353,11 +415,6 @@ function reset(){
 
 
 
-
-
-
-
 createDeck(1);
 shuffleDeck();
-theDeck[2] = '1h'
-theDeck[3] = '11s'
+
