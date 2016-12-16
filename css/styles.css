@@ -11,7 +11,7 @@
 
 body{
 	font-family: "Bungee Inline";
-	font-size: 19px;
+	font-size: 22px;
 	background-image: url("../images/background.jpg");
 	/* background-repeat: no-repeat; */
 }
@@ -46,6 +46,11 @@ body{
 .dealer-cards{
 	/* perspective: 300px */
 }
+
+.hide-card-2{
+	margin: ;
+}
+
 .card{
 	height: 220px;
 	width: 14%;
@@ -123,6 +128,7 @@ img {
 .deal:hover{
 	background-image: url("../images/dealHover.jpeg");
 	border: 2px solid grey;
+	transition-duration: 0;
 }
 .reset-bet.deal{
 	background-image: url("../images/button.png");
@@ -222,4 +228,53 @@ button.reset-bet{
 
 .no-margin-left{
 	margin-left: 0 !important;
+}
+
+.rules{
+ 	background-image: url("../images/rules.jpeg");
+ 	background-repeat: no-repeat;
+ 	background-size: 100%;
+ 	border: 2px solid yellow;
+ 	height: 44px;
+ 	line-height: 40px;
+ 	width: 80px;
+ 	font-family: "Bungee Inline";
+ 	font-size: 17px;
+ 	color: yellow;
+ 	position: absolute;
+ 	top: 20px;
+ 	right: 20px;
+}
+
+.rule-description{
+	display: none;
+	width: 600px;
+	background-color: white;
+	opacity: .5;
+	position: absolute;
+	top: 40px;
+	right: 20px;
+	border: white 5px solid;
+	border-radius: 5%;
+}
+
+.description-header{
+	margin-top: 20px;
+	margin-bottom: 30px;
+}
+
+.hide-rules{
+	margin: 15px;
+}
+
+.action{
+	position: absolute;
+	bottom: 280px;
+	right: 40px;
+	/* background-color: white; */
+	height: 300px;
+	width: 286px;
+	border-radius: 10%;
+	border: white dashed 1px;
+	color: white;
 }

@@ -189,32 +189,46 @@ $(document).ready(function(){
 		}
 	});
 	$('.button10').click(function(){
-		if(myCoin >= 10){myBet += 10;
+		if((myCoin >= 10)&&(hitCounter===0)){myBet += 10;
 		myCoin -= 10}
 		displayMoney();
 	})
 	$('.button50').click(function(){
-		if(myCoin >= 50){myBet += 50; 
+		if((myCoin >= 50)&&(hitCounter===0)){myBet += 50; 
 		myCoin -= 50}
 		displayMoney();
 	})
 	$('.button100').click(function(){
-		if(myCoin >= 100){myBet += 100;
+		if((myCoin >= 100)&&(hitCounter===0)){myBet += 100;
 		myCoin -= 100}
 		displayMoney();
 	})		
 	$('.button500').click(function(){
-		if(myCoin >= 500){myBet += 500; 
+		if((myCoin >= 500)&&(hitCounter===0)){myBet += 500; 
 		myCoin -= 500}
 		displayMoney();
 	})
 
 	$('.reset-bet').click(function(){
+		if(hitCounter===0){
 		myCoin += myBet;
 		myBet = 0;
-		displayMoney();
+		displayMoney();}
 	})
 
+	$('.rules').click(function(){
+		$('.rule-description').slideDown(1000);
+		$('.bet-wrapper').fadeOut('slow');
+		$('.action').fadeOut('slow');
+		$(this).hide();
+	})	
+
+	$('.hide-rules').click(function(){
+		$('.rule-description').slideUp(1000);
+		$('.bet-wrapper').delay(800).fadeIn('slow');
+		$('.action').delay(800).fadeIn('slow');
+		$('.rules').delay(800).fadeIn('slow');
+	})		
 });
 
 function displayMoney(){
