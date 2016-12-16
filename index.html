@@ -7,9 +7,12 @@
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
 	<!-- <script type="text/javascript" src="js/canvas.js"></script> -->
-	
+	<style>@import 'https://fonts.googleapis.com/css?family=Frijole';</style>
+	<style>@import 'https://fonts.googleapis.com/css?family=Bungee+Inline';</style>	
+
 </head>
 <body>
+	
 	<div class="header text-center">
 			<img src='images/header.png'>
 	</div>
@@ -20,7 +23,8 @@
 			<div class="the-table col-sm-12">
 				<div class="col-sm-12 dealer-hand-wrapper">
 					<div class="col-sm-1 dealer-total">
-						dealer total <span class="dealer-total-number"></span>
+						<br><br>DEALER<br><br>&nbsp &nbsp &nbsp
+						<span class="dealer-total-number"></span>
 					</div>					
 					<div class="col-sm-11 dealer-cards">
 						<div class="col-sm-1 card card-1"></div>
@@ -34,12 +38,14 @@
 
 				<div class="col-sm-12 player-hand-wrapper">
 					<div class="col-sm-1 player-total">
-						player total <span class="player-total-number"></span>
+						<br><br>PLAYER<br><br>&nbsp &nbsp &nbsp<span class="player-total-number"></span>
 						<br><span class="player1-total-number"></span>
 						<br><span class="player2-total-number"></span>
 					</div>
 					<div class="col-sm-11 player-cards">
-						<div class="col-sm-1 card card-1"></div>
+						<div class="col-sm-1 card card-1">
+							<canvas class='dragon'></canvas>
+						</div>
 						<div class="col-sm-1 card card-2"></div>
 						<div class="col-sm-1 card card-3"></div>
 						<div class="col-sm-1 card card-4"></div>
@@ -47,40 +53,35 @@
 						<div class="col-sm-1 card card-6"></div>
 					</div>
 				</div>
-				<div class="row">
-					<div class="col-sm-2">
-						<button class="deal-button">DEAL</button>
-					</div>
-					<div class="col-sm-2">
-						<button class="hit-button">HIT</button>
-					</div>
-					<div class="col-sm-2">
-						<button class="stand-button">STAND</button>
-					</div>
-					<div class="col-sm-2">
-						<button class="split-button">SPLIT</button>
-					</div>
-					<div class="col-sm-2">
-						<button class="doubleDown-button">DOUBLE DOWN</button>
-					</div>
-<!-- 					<div class="col-sm-2">
-						<button class="shuffle-button">SHUFFLE</button>
-					</div> -->
-				</div>			
+				
 			</div>
 		</div>
 	</div>
 
 <div class='bet-wrapper'>
-	<div id="myCoin">Coins: 5000</div>
-	<button class="button10">10</button>
-	<button class="button50">50</button>	
-	<button class="button100">100</button>	
-	<button class="button500">500</button>
-	<div id="betAmount">Bet Amount: 0</div>
-	<button class="reset-bet">Reset Bet</button>
+	<button class="hit-button frame">HIT</button>
+	<button class="stand-button frame">STAND</button>
+	<button class="split-button frame">SPLIT</button>
+	<button class="doubleDown-button frame"><div class='margin-bot'>DOUBLE DOWN</div></button>
+	<div class='bet-square'>
+		<div class='bet-text'>MY COINS</div>
+		<div id="myCoin">1000</div><br>
+		<div class='bet-text'>BET AMOUNT</div>	
+		<div id="betAmount">0</div><br>
+		<button class="button10 coin-frame no-margin-left">10</button>
+		<button class="button50 coin-frame">50</button>
+		<button class="button100 coin-frame">100</button>	
+		<button class="button500 coin-frame">500</button><br>
+		<div class="deal-reset">
+			<button class="deal-button deal no-margin-left">DEAL</button>
+			<button class="reset-bet deal">RESET BET</button>
+		</div>
+	</div>
 </div>
-
-
+	<!-- <button class="change-level">change level</button> -->
 </body>
 </html>
+
+	
+	
+

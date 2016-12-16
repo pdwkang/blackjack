@@ -10,6 +10,8 @@
 } */
 
 body{
+	font-family: "Bungee Inline";
+	font-size: 19px;
 	background-image: url("../images/background.jpg");
 	/* background-repeat: no-repeat; */
 }
@@ -81,8 +83,143 @@ img {
 
 .bet-wrapper{
 	position: absolute;
-	top: 50px;
-	right: 50px;
-	background-color: white;
+	bottom: 20px;
+	right: 20px;
+	/* background-color: white; */
 	padding: 20px;
+}
+.bet-wrapper div{
+	display: inline-block;
+}
+.frame{
+ 	background-image: url("../images/button.png");
+ 	background-repeat: no-repeat;
+ 	background-size: 100%;
+ 	border: none;
+ 	height: 62px;
+ 	line-height: 62px;
+ 	width: 100px;
+ 	text-align: center;
+ 	font-family: Frijole;
+ 	color: black;
+ 	font-size: 17px;
+ 	margin: 20px;
+}
+
+.deal{
+ 	background-image: url("../images/deal.jpeg");
+ 	background-repeat: no-repeat;
+ 	background-size: 100%;
+ 	border: 2px solid white;
+ 	height: 62px;
+ 	line-height: 55px;
+ 	width: 110px;
+ 	text-align: center;
+ 	font-family: Frijole;
+ 	font-size: 17px;
+ 	margin-left: 20px;
+ 	color: whitesmoke;
+}
+.deal:hover{
+	background-image: url("../images/dealHover.jpeg");
+	border: 2px solid grey;
+}
+.reset-bet.deal{
+	background-image: url("../images/button.png");
+	color: black;
+}
+.reset-bet.deal:hover{
+	background-image: url("../images/buttonHover.png");
+	color: blue;
+}
+
+button.doubleDown-button{
+	font-size: 13px;
+	line-height: 20px;
+	/* margin-top: 10px; */
+}
+
+.frame:hover{
+ 	background-image: url("../images/buttonHover.png");
+ 	color: blue;
+ 	border: 1px blue solid;
+}
+.doubleDown-button button{
+	margin-top: 10px;
+}
+.coin-frame{
+	background-image: url("../images/coin-frame.png");
+ 	background-repeat: no-repeat;
+ 	background-size: 100%;
+ 	border: none;
+ 	height: 35px;
+ 	line-height: 32px;
+ 	width: 50px;
+ 	text-align: center;
+ 	/* font-family: Frijole; */
+ 	color: black;
+ 	font-size: 17px;
+ 	margin: 5px;
+	margin: 10px -8px 10px 20px;
+ 	border: white 2px solid;
+ 	color: brown;
+ 	border-radius: 10%;
+}
+.coin-frame:hover{
+ 	background-image: url("../images/coinHover.jpeg");
+ 	color: white;
+}
+button.reset-bet{
+	font-size: 12px;
+}
+
+.margin-bot{
+	margin-top: -12px
+}
+
+.bet-square{
+	/* background-color: #c8e6c9; */
+	border-radius: 10%;
+	padding: 20px;
+	border: white 1px dashed;
+	font-family: "Bungee Inline";
+}
+
+.bet-text{
+	color: white;
+	font-size: 20px;
+	border: white solid 1px;
+	width: 150px;
+	padding: 0 5px;
+}
+#betAmount{
+	border: white solid 1px;
+	text-align: right;
+	color: white;
+	font-size: 20px;
+	width: 90px;
+	padding: 0 5px;
+}
+#myCoin{
+	border: white solid 1px;
+	text-align: right;
+	color: white;
+	font-size: 20px;
+	width: 90px;
+	padding: 0 5px;
+}
+.flip{
+	backface-visibility: hidden;
+	transform: rotateX(2160deg) rotateY(2160deg);
+	transition: all 2s;
+	transition-delay: 0
+}
+
+.deal-reset{
+	/* height: 50px; */
+	/* margin: auto; */
+}
+
+.no-margin-left{
+	margin-left: 0 !important;
 }

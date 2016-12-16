@@ -23,13 +23,15 @@ var hitCounter = 0;
 // 10: 2nd pair final total calc   
 
 var placeBet = true;
-var myCoin = 5000;
+var myCoin = 1000;
 var myBet = 0; // later get input from user
 var didIWin = false;
 
 $(document).ready(function(){
 	$('.deal-button').click(function(){
 		if((!hitCounter)&&(myBet>0)){
+			$(this).removeClass('flip');
+			$(this).addClass('flip');
 			reset();
 			// theDeck[0]='1s'
 			// theDeck[1]='10h'			
@@ -45,20 +47,22 @@ $(document).ready(function(){
 			calculateTotal(dealerHands, 'dealer');
 			hitCounter=1;
 			if(calculateTotal(playerHands, 'player')===21){
-				placeCard('dealer', 2, dealerHands[1]);
+			placeCard('dealer', 2, dealerHands[1]);
 			checkWin();
 			}
 		}
 	});
 
 	$('.hit-button').click(function(){
-		if(hitCounter===1){
+		$('.deal-button').removeClass('flip');
+		if((hitCounter===1)||(hitCounter===2)){
 			if(calculateTotal(playerHands,'player') < 21){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
 				var slotForNewCard = playerHands.length;
 				placeCard('player', slotForNewCard, playerHands[lastCardIndex]);
 				calculateTotal(playerHands, 'player');
+				hitCounter=2
 				if(calculateTotal(playerHands, 'player') >= 21){
 					placeCard('dealer', 2, dealerHands[1]);
 					checkWin();
@@ -152,16 +156,18 @@ $(document).ready(function(){
 	});
 
 	$('.doubleDown-button').click(function(){
-		myBet * 2;
-		displayMoney();
-		if(hitCounter===1){
+		console.log(hitCounter)
+		if(hitCounter!==2){
+			myBet = myBet * 2;
+			displayMoney();
+			if(hitCounter===1){
 			if(calculateTotal(playerHands,'player') < 21){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
 				var slotForNewCard = playerHands.length;
 				placeCard('player', slotForNewCard, playerHands[lastCardIndex]);
 				calculateTotal(playerHands, 'player');
-			}else{
+			}else {
 				checkWin()  //if this runs, hitcounter = 0
 			};
 			//stand-button code copied below
@@ -178,7 +184,7 @@ $(document).ready(function(){
 					}
 				}
 				hitCounter = 4
-			checkWin();
+			checkWin();}
 			}		
 		}
 	});
@@ -212,8 +218,8 @@ $(document).ready(function(){
 });
 
 function displayMoney(){
-	$('#myCoin').html('Coins: ' + myCoin);
-	$('#betAmount').html('Bet Amount: ' + myBet);
+	$('#myCoin').html(myCoin);
+	$('#betAmount').html(myBet);
 }
 // var dealerTotal = 0;
 
@@ -326,7 +332,7 @@ function checkWin(){
 	}else{
 		if(playerTotal>dealerTotal){
 			myCoin += (myBet*2);
-			if(playerHands.length ===2){
+			if((playerHands.length ===2)&&(playerTotal===21)){
 			myCoin += myBet/2;
 			console.log('blackjack you won +' + myBet/2)
 			}
