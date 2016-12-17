@@ -14,7 +14,7 @@ var hitCounter = 0;
 //  1: hit/stand/doubledown     
 //  2: 
 //  3: math for dealer two cards
-//  4: double down (doubling the bet)
+//  4: double down (doubling value of myBet)
 //  6: jquery splitting delay(split)
 //  7: 2nd pair total calc(split) 
 //	   and 1st pair hitting
@@ -28,13 +28,35 @@ var myBet = 0; // later get input from user
 var didIWin = false;
 
 $(document).ready(function(){
+for(var i =0; i<100; i++){
+	$(".drago").animate({
+	'marginLeft' : "+=5px" });}
+	$(".drago").animateSprite({
+    fps: 26,
+    animations: {
+        walkRight: [0, 1, 2, 3,, 4, 5,6, 6, 7, 8]
+    },
+    
+    loop: true,
+    complete: function(){
+        // use complete only when you set animations with 'loop: false'
+        alert("animation End");
+    }
+});
+
+
+
+	
+
 	$('.deal-button').click(function(){
+		// $('.bet-square-wrapper').toggleClass('.flip2')
 		if((!hitCounter)&&(myBet>0)){
-			$(this).removeClass('flip');
-			$(this).addClass('flip');
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.player-total-number').show()
+			$('.deal-button').addClass('flip');
 			reset();
 			// theDeck[0]='1s'
-			// theDeck[1]='10h'			
+			// theDeck[1]='1d'			
 			playerHands.push(theDeck.shift());
 			playerHands.push(theDeck.shift());
 			dealerHands.push(theDeck.shift());
@@ -49,6 +71,8 @@ $(document).ready(function(){
 			if(calculateTotal(playerHands, 'player')===21){
 			placeCard('dealer', 2, dealerHands[1]);
 			checkWin();
+			}else{
+				describeAction('PRESS HIT OR STAND')
 			}
 		}
 	});
@@ -127,10 +151,11 @@ $(document).ready(function(){
 		if((hitCounter===1)
 			&&(Number(playerHands[0].slice(0, -1))===1)
 			&&(Number(playerHands[1].slice(0, -1))===1))
-			{
+			{if(myCoin>=myBet){
+			myCoin -= myBet
 			placeCard('player', 4, playerHands[1]);
 			$('.player-cards .card-2').html('');
-			$('.player-cards .card-4').css({'border-left':'2px solid black'})
+			$('.player-cards .card-4').css({'border-left':'5px dashed black'})
 			playerHands.push(theDeck.shift());   //3th   [2]
 			playerHands.push(theDeck.shift());   //4th   [3]
 			hitCounter=6
@@ -151,13 +176,15 @@ $(document).ready(function(){
 				var slotForNewCard = dealerHands.length;
 				placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
 				dealerTotal = calculateTotal(dealerHands, 'dealer');}
-			checkWin2();
+			checkWin2();}else{describeAction('NOT ENOUGH COINS TO SPLIT!')}
+		}else{
+			describeAction('YOU CAN ONLY SPLIT ACES!')
 		}		
 	});
 
 	$('.doubleDown-button').click(function(){
-		console.log(hitCounter)
-		if(hitCounter!==2){
+		if(hitCounter===1){
+			myCoin -= myBet
 			myBet = myBet * 2;
 			displayMoney();
 			if(hitCounter===1){
@@ -171,7 +198,7 @@ $(document).ready(function(){
 				checkWin()  //if this runs, hitcounter = 0
 			};
 			//stand-button code copied below
-			if(hitCounter>0){  // if bust hit condition wud be 0 so this wont run
+			if(hitCounter!=2){  // if bust hit condition wud be 0 so this wont run
 				var tempFunc = placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);
 				if(calculateTotal(playerHands,'player') < 21){setTimeout(tempFunc, 5000);
 					var	dealerTotal = calculateTotal(dealerHands, 'dealer');
@@ -218,16 +245,14 @@ $(document).ready(function(){
 
 	$('.rules').click(function(){
 		$('.rule-description').slideDown(1000);
-		$('.bet-wrapper').fadeOut('slow');
-		$('.action').fadeOut('slow');
+		$('.bet-wrapper, .action, .fireball, .fireball2').fadeOut('slow');
 		$(this).hide();
 	})	
 
 	$('.hide-rules').click(function(){
 		$('.rule-description').slideUp(1000);
-		$('.bet-wrapper').delay(800).fadeIn('slow');
-		$('.action').delay(800).fadeIn('slow');
-		$('.rules').delay(800).fadeIn('slow');
+		$('.bet-wrapper, .rules, .action, .fireball, .fireball2').delay(800).fadeIn('slow');
+		
 	})		
 });
 
@@ -247,6 +272,34 @@ function createDeck(numberOfDecks){
 			}	
 		}
 	};	return newDeck;}
+
+// create divs describe action
+var gamelog = 1
+function describeAction(aa){
+	var a8 = $('.action8').html();
+	$('.action9').html(a8)
+	var a7 = $('.action7').html();
+	$('.action8').html(a7)
+	var a6 = $('.action6').html();
+	$('.action7').html(a6)
+	var a5 = $('.action5').html();
+	$('.action6').html(a5)
+	var a4 = $('.action4').html();
+	$('.action5').html(a4)
+	var a3 = $('.action3').html();
+	$('.action4').html(a3)
+	var a2 = $('.action2').html();
+	$('.action3').html(a2)
+	var a1 = $('.action1').html();
+	$('.action2').html(a1)
+	$('.action1').html(gamelog + ": " + aa)		
+	gamelog++
+} 
+
+
+
+
+
 function shuffleDeck(){
 	for(let i = 0; i<10000; i++){
 		var random1 = Math.floor(Math.random() * theDeck.length);
@@ -339,30 +392,38 @@ function checkWin(){
 	var playerTotal = calculateTotal(playerHands, 'player');
 	var dealerTotal = calculateTotal(dealerHands, 'dealer');
 	if(playerTotal>21){
-			console.log('dealer wins')
+			describeAction('BETTER LUCK NEXT HAND!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();			
 	}else if(dealerTotal>21){
 		myCoin += (myBet*2)
-			console.log('you won ' + myBet)
+			describeAction('YOU WON ' + myBet + 'COINS!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 	}else{
 		if(playerTotal>dealerTotal){
 			myCoin += (myBet*2);
 			if((playerHands.length ===2)&&(playerTotal===21)){
 			myCoin += myBet/2;
-			console.log('blackjack you won +' + myBet/2)
+			// console.log('blackjack you won +' + myBet/2)
+			describeAction('BLACKJACK! +' + (myBet/2) +' COINS!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			}
-			console.log('you won ' + myBet)
+			// console.log('you won ' + myBet)
+			describeAction('YOU WON ' + myBet + ' COINS!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 		}else if(dealerTotal>playerTotal){
-			console.log('dealer wins')
+			// console.log('dealer wins')
+			describeAction('BETTER LUCK NEXT HAND!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 		}else{
 			myCoin += myBet
+			describeAction('PUSH! IT\'S A TIE!')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 		}
 	};
-
-
-
 	hitCounter = 0;
 	myBet = 0;
 	displayMoney();
+	$('.deal-button').removeClass('flip');
 }
 
 function checkWin2(){
@@ -371,42 +432,51 @@ function checkWin2(){
 	var player2 = calculateTotal(secondPair, 'player');
 	var dealerTotal = calculateTotal(dealerHands, 'dealer');
 	if(player1>21){
-			console.log('first pair: dealer wins')
+			// console.log('first pair: dealer wins')
+			describeAction('YOU LOST HAND #1')
+
 	}else if(dealerTotal>21){
-			console.log('first pair: you win')
+			describeAction('YOU WON ' + myBet + ' ON HAND #1')
 			myCoin += (myBet*2)
 	}else{
 		if(player1>dealerTotal){
-			console.log('first pair: you win')
+			describeAction('YOU WON ' + myBet + ' ON HAND #1')
 			myCoin += (myBet*2)
 		}else if(dealerTotal>player1){
-			console.log('first pair: dealer wins')
+			describeAction('YOU LOST HAND #1')
 			
 		}else{
-			console.log('first pair: push')
+			describeAction('YOU PUSHED HAND #1')
 			myCoin += myBet
 		}
 	};
 
 	if(player2>21){
-			console.log('second pair: dealer wins')
+			describeAction('YOU LOST HAND #2')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 	}else if(dealerTotal>21){
-			console.log('second pair: you win')
+			describeAction('YOU WON ' + myBet + ' ON HAND #2')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			myCoin += (myBet*2)
 	}else{
 		if(player2>dealerTotal){
-			console.log('second pair: you win')
+			describeAction('YOU WON ' + myBet + ' ON HAND #2')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			myCoin += (myBet*2)
 		}else if(dealerTotal>player2){
-			console.log('second pair: dealer wins')
+			describeAction('YOU LOST HAND #2')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 		}else{
-			console.log('second pair: push')
+			describeAction('YOU PUSHED HAND #2')
+			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			myCoin += myBet
 		}
 	};
-	Coins -= myBet
 	myBet = 0;
 	displayMoney();
+	$('.deal-button').removeClass('flip');
+	$('.player-total-number').hide()
+	hitCounter = 0;		
 }
 
 function reset(){

@@ -8,14 +8,34 @@
 	margin: 0;
 	padding: 0;
 } */
-
-body{
+.flip2{
+	backface-visibility: hidden;
+	transform: rotateX(720deg) rotateY(720deg);
+	transition: all 4s;
+}
+.theWholeWorld{	
+	/* position: absolute; */
+	height: 730px;
 	font-family: "Bungee Inline";
 	font-size: 22px;
 	background-image: url("../images/background.jpg");
-	/* background-repeat: no-repeat; */
+}
+.theNextWorld{
+	/* position: absolute; */
+	height: 730px;
+	background-image: url('../images/background2.jpg');
+	background-size: 100%;
+	perspective: 200px
+}
+.theNextNextWorld{
+	position: relative;
+	transform-style: preserve-3d;
+	background-image: url('../images/rules.jpeg');
+	background-size: 100%;
+	perspective: 500px
 }
 .game-wrapper{
+	/* border: white 1px dashed; */
 }
 .top-margin{
 	margin-top: 5%;
@@ -123,7 +143,8 @@ img {
  	font-family: Frijole;
  	font-size: 17px;
  	margin-left: 20px;
- 	color: whitesmoke;
+ 	color: whitesmoke;	
+ 	z-index: 3;
 }
 .deal:hover{
 	background-image: url("../images/dealHover.jpeg");
@@ -142,7 +163,7 @@ img {
 button.doubleDown-button{
 	font-size: 13px;
 	line-height: 20px;
-	/* margin-top: 10px; */
+
 }
 
 .frame:hover{
@@ -150,9 +171,8 @@ button.doubleDown-button{
  	color: blue;
  	border: 1px blue solid;
 }
-.doubleDown-button button{
-	margin-top: 10px;
-}
+
+
 .coin-frame{
 	background-image: url("../images/coin-frame.png");
  	background-repeat: no-repeat;
@@ -166,7 +186,7 @@ button.doubleDown-button{
  	color: black;
  	font-size: 17px;
  	margin: 5px;
-	margin: 10px -8px 10px 20px;
+	margin: 10px -8px 10px 18px;
  	border: white 2px solid;
  	color: brown;
  	border-radius: 10%;
@@ -184,7 +204,7 @@ button.reset-bet{
 }
 
 .bet-square{
-	/* background-color: #c8e6c9; */
+	background: rgba(54, 25, 25, .5);
 	border-radius: 10%;
 	padding: 20px;
 	border: white 1px dashed;
@@ -218,7 +238,6 @@ button.reset-bet{
 	backface-visibility: hidden;
 	transform: rotateX(2160deg) rotateY(2160deg);
 	transition: all 2s;
-	transition-delay: 0
 }
 
 .deal-reset{
@@ -249,13 +268,14 @@ button.reset-bet{
 .rule-description{
 	display: none;
 	width: 600px;
-	background-color: white;
-	opacity: .5;
+	background: rgba(54, 25, 25, .5);
 	position: absolute;
+	font-family: 'Istok Web';
 	top: 40px;
 	right: 20px;
 	border: white 5px solid;
 	border-radius: 5%;
+	color: white;
 }
 
 .description-header{
@@ -265,16 +285,101 @@ button.reset-bet{
 
 .hide-rules{
 	margin: 15px;
+	font-size: 15px;
+	background-color: yellow;
+	color: black;
+	font-family: 'bungee inline';
 }
 
 .action{
+	padding-top: 10px;
 	position: absolute;
 	bottom: 280px;
 	right: 40px;
-	/* background-color: white; */
+	background: rgba(54, 25, 25, .5);
 	height: 300px;
 	width: 286px;
 	border-radius: 10%;
 	border: white dashed 1px;
 	color: white;
+	font-size: 16px;
+	font-family: 'Istok Web';
+}
+.action1{
+	background: rgba(189, 125, 144, .5);
+	padding-left: 20px;
+}
+.action3, .action5, .action7{
+	color: white;
+	background: rgba(54, 125, 144, .5);
+
+	padding-left:20px;
+}
+.action9{
+	padding-left: 20px;
+}
+.action2, .action4, .action6, .action8{
+	
+	color: grey;
+	padding-left: 20px;
+}
+
+.drago{
+	background-image: url('../images/dragon1.png');
+	width: 75.04px;
+	height: 68.25px;
+	position: absolute;
+	left: 600px;
+	top: 20px;
+}
+
+.action-header{
+	font-family: "Bungee Inline";
+	margin-top: -5px;
+	font-size: 20px;
+	text-align: center;
+	color: white;
+}
+
+.fireball, .fireball2{
+	/* background-image: url('../images/fireball.png'); */
+	/* border: 1px solid black; */
+	width: 23px;
+	height: 23px;
+	/* background-repeat: no-repeat; */
+	position: absolute;
+	bottom: 137px;
+	z-index: 0;
+	right: 320px;
+}
+.fireball img{
+	height: 100%;
+	width: 100%;
+}
+
+.fireball2.f1{
+	right: 20px;
+}
+
+
+.rotate {
+    animation: spin .2s infinite linear;
+}
+
+@keyframes spin {
+    100% {
+        transform:rotate(360deg);
+    }
+}
+
+.bet-square-wrapper{
+	transform-style: preserve-3d;
+	perspective: 500px;
+	position: relative;
+}
+
+.high-stakes{
+	background-image: url('../images/background2.jpg');
+	background-size: 100%;
+	perspective: 200px;
 }
