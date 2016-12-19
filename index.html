@@ -6,30 +6,30 @@
 	<link rel="stylesheet" type="text/css" href="css/styles.css">
 	<script type="text/javascript" src="js/jquery.min.js"></script>
 	<script type="text/javascript" src="js/scripts.js"></script>
-	<script type="text/javascript" src="js/canvas.js"></script>
 	<style>@import 'https://fonts.googleapis.com/css?family=Frijole';</style>
 	<style>@import 'https://fonts.googleapis.com/css?family=Bungee+Inline';</style>	
 	<style>@import 'https://fonts.googleapis.com/css?family=Istok+Web';</style>		
+	<!-- <script type="text/javascript" src="js/memory.js"></script> -->
 </head>
 <body>
 <!-- <div class='theNextNextWorld'> -->
 <!-- <div class='theNextWorld .flip2'> -->
+<div class="header"><img src='images/header.png'></div>
+
 <div class='theWholeWorld'>
 	<!-- <div class='drago'>
 	</div> -->
 
-	<div class="header text-center">
-			<img src='images/header.png'>
-	</div>
+
 
 
 	<div class="container game-wrapper">
 		<div class="row top-margin">
 			<div class="the-table col-sm-12">
 				<div class="col-sm-12 dealer-hand-wrapper">
-					<div class="col-sm-1 dealer-total">
+					<div class="col-sm-1 dealer-total text-center">
 						<br>DEALER<br>
-						<br>&nbsp &nbsp &nbsp
+						<br>
 						<span class="dealer-total-number"></span>
 					</div>					
 					<div class="col-sm-11 dealer-cards">
@@ -43,10 +43,10 @@
 				</div>
 
 				<div class="col-sm-12 player-hand-wrapper">
-					<div class="col-sm-1 player-total">
-						<br>PLAYER<br><br>&nbsp &nbsp &nbsp &nbsp<span class="player-total-number"></span>
-						<br>&nbsp &nbsp &nbsp &nbsp<span class="player1-total-number"></span>
-						<br>&nbsp &nbsp &nbsp &nbsp<span class="player2-total-number"></span>
+					<div class="col-sm-1 player-total text-center">
+						<br>PLAYER<br><br><span class="player-total-number"></span>
+						<br><span class="player1-total-number"></span>
+						<br><span class="player2-total-number"></span>
 					</div>
 					<div class="col-sm-11 player-cards">
 						<div class="col-sm-1 card card-1">
@@ -94,7 +94,7 @@
 <div class='rule-description text-center'>
 	<div class='description-header text-center'>
 	KING'S LANDING CASINO</div>
-DEALER HITS SOFT 17<br>
+DEALER STAYS ON SOFT 17<br>
 ONLY ACES SPLIT<br>
 DECK SHUFFLES EVERY HAND<br>
 ONE HAND PER PLAYER<br>
@@ -113,10 +113,9 @@ NO MAGICIANS OR PET DRAGONS ALLOWED
 	<div class='action5'></div>
 	<div class='action6'></div>
 	<div class='action7'></div>
-	<div class='action8'></div>
-	<div class='action9'><span><br><br>
+	<div class='action8'><span><br><br>
 	WELCOME TO GAME OF BLACKJACK!<br><br>SELECT BET AMOUNT AND DEAL!
-	<br><br><br><br>CLICK ABOVE FOR RULES
+	<br><br>CLICK ABOVE FOR RULES
 	</span></div>
 </div>
 <div class="fireball rotate">
@@ -126,14 +125,16 @@ NO MAGICIANS OR PET DRAGONS ALLOWED
 	<img src='images/fireball.png'>
 </div>
 
-
-
+<div id='winter'>
+	<!-- <img src='images/winteriscoming.png'> -->
+</div>
 
 
 </div>
-<!-- </div> -->
-<!-- </div> -->
-	<!-- <button class="change-level">change level</button> -->
+<div class='mg-contents'>
+</div>
+
+
 </body>
 </html>
 

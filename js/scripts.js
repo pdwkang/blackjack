@@ -28,32 +28,15 @@ var myBet = 0; // later get input from user
 var didIWin = false;
 
 $(document).ready(function(){
-for(var i =0; i<100; i++){
-	$(".drago").animate({
-	'marginLeft' : "+=5px" });}
-	$(".drago").animateSprite({
-    fps: 26,
-    animations: {
-        walkRight: [0, 1, 2, 3,, 4, 5,6, 6, 7, 8]
-    },
-    
-    loop: true,
-    complete: function(){
-        // use complete only when you set animations with 'loop: false'
-        alert("animation End");
-    }
-});
 
-
-
-	
 
 	$('.deal-button').click(function(){
-		// $('.bet-square-wrapper').toggleClass('.flip2')
+		theDeck = createDeck(1)
 		if((!hitCounter)&&(myBet>0)){
+			$('#winter').hide()
 			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			$('.player-total-number').show()
-			$('.deal-button').addClass('flip');
+			// $('.deal-button').addClass('flip');
 			reset();
 			// theDeck[0]='1s'
 			// theDeck[1]='1d'			
@@ -188,7 +171,7 @@ for(var i =0; i<100; i++){
 			myBet = myBet * 2;
 			displayMoney();
 			if(hitCounter===1){
-			if(calculateTotal(playerHands,'player') < 21){
+			if(calculateTotal(playerHands,'player') < 22){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
 				var slotForNewCard = playerHands.length;
@@ -198,15 +181,16 @@ for(var i =0; i<100; i++){
 				checkWin()  //if this runs, hitcounter = 0
 			};
 			//stand-button code copied below
-			if(hitCounter!=2){  // if bust hit condition wud be 0 so this wont run
-				var tempFunc = placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);
-				if(calculateTotal(playerHands,'player') < 21){setTimeout(tempFunc, 5000);
+			if(hitCounter!==0){  // if bust hit condition wud be 0 so this wont run
+				hitCounter=2
+				placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);
+				if(calculateTotal(playerHands,'player') < 21){
 					var	dealerTotal = calculateTotal(dealerHands, 'dealer');
 					while(dealerTotal<17){
 						dealerHands.push(theDeck.shift())
-						var lastCardIndex = dealerHands.length - 1;
-						var slotForNewCard = dealerHands.length;
-						placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex]);
+						var lastCardIndex1 = dealerHands.length - 1;
+						var slotForNewCard1 = dealerHands.length;
+						placeCard('dealer', slotForNewCard1, dealerHands[lastCardIndex1]);
 						dealerTotal = calculateTotal(dealerHands, 'dealer');
 					}
 				}
@@ -276,8 +260,7 @@ function createDeck(numberOfDecks){
 // create divs describe action
 var gamelog = 1
 function describeAction(aa){
-	var a8 = $('.action8').html();
-	$('.action9').html(a8)
+	setTimeout(function(){
 	var a7 = $('.action7').html();
 	$('.action8').html(a7)
 	var a6 = $('.action6').html();
@@ -293,7 +276,7 @@ function describeAction(aa){
 	var a1 = $('.action1').html();
 	$('.action2').html(a1)
 	$('.action1').html(gamelog + ": " + aa)		
-	gamelog++
+	gamelog++}, 1200)
 } 
 
 
@@ -396,7 +379,7 @@ function checkWin(){
 			$('.fireball, .fireball2').toggleClass('rotate').toggle();			
 	}else if(dealerTotal>21){
 		myCoin += (myBet*2)
-			describeAction('YOU WON ' + myBet + 'COINS!')
+			describeAction('YOU WON ' + myBet + ' COINS!')
 			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 	}else{
 		if(playerTotal>dealerTotal){
@@ -507,4 +490,111 @@ function reset(){
 
 createDeck(1);
 shuffleDeck();
+////////////////
+// MEMORY GAME
+
+var cards = [
+'<img src="images/card1.jpg">',
+'<img src="images/card2.jpg">',
+'<img src="images/card3.jpg">',
+'<img src="images/card4.jpg">',
+'<img src="images/card5.jpg">',
+'<img src="images/card6.jpg">',
+'<img src="images/card7.jpg">',
+'<img src="images/card8.jpg">',
+'<img src="images/card9.jpg">',
+'<img src="images/card10.jpg">',
+'<img src="images/card11.jpg">',
+'<img src="images/card12.jpg">',
+];
+
+function shuffleDeck(){
+	for(let i = 0; i<10000; i++){
+		var random1 = Math.floor(Math.random() * theDeck.length);
+		var random2 = Math.floor(Math.random() * theDeck.length);
+		var temp = theDeck[random1];
+		theDeck[random1] = theDeck[random2];
+		theDeck[random2] = temp;
+	}
+};
+   
+
+
+// All code will wait until the DOM is ready!
+$(document).ready(function(){
+	setTimeout(function(){
+		$('.mg-tile-inner').toggleClass('flip')}, 500);
+	setTimeout(function(){
+		$('.mg-tile-inner').toggleClass('flip')}, 5500);		
+
+	var gridSize = 12;
+	var mgHTML = '';
+	var card = ''
+	var cardLocation = [];
+	// push numbers into array as many as gridsize
+	for(let i=0; i<gridSize; i++){
+		cardLocation.push([i]);
+	}
+
+	for(let i=0; i<9000; i++){
+		var random1 = Math.floor(Math.random() * cardLocation.length);
+		var random2 = Math.floor(Math.random() * cardLocation.length);
+		var temp = cardLocation[random1];
+		cardLocation[random1] = cardLocation[random2];
+		cardLocation[random2] = temp;
+	}
+
+	for(let i=0; i<gridSize; i++){
+		card = cards[Math.floor(cardLocation[i]/2)];
+		mgHTML += '<div class="mg-tile col-sm-3">';
+			mgHTML += '<div class="mg-tile-inner">';
+				mgHTML += '<div class="mg-front">'+card+'</div>';
+				mgHTML += '<div class="mg-back"></div>';
+			mgHTML += '</div>';
+		mgHTML += '</div>';
+	}
+
+   
+    $('.mg-contents').html("MATCH ALL FOR +2000 COINS<br>" + mgHTML +
+    	'<button class="skip-button frame">SKIP</button>');
+
+
+	var canClick = true;
+	var matchCounter = 0;
+	$('.mg-tile-inner').click(function(){
+	    if(canClick){    
+ 		   	$(this).toggleClass('flip');
+    		var cardsUp = $('.flip')
+    		if(cardsUp.length == 2){
+    			canClick = false;
+    			// check to see if they are the same
+    			var cardsUpImages = cardsUp.find('.mg-front img')
+				if(cardsUpImages[0].src == cardsUpImages[1].src){
+    				// this is a match!
+    				cardsUp.addClass('matched');
+    				cardsUp.removeClass('flip');
+					canClick =true;
+					matchCounter++;
+    			}else{
+    				setTimeout(function(){
+    					cardsUp.removeClass('flip')
+    					canClick =true;
+    				}, 600)
+    			}
+    		}else{
+    		// do nothing
+    		};
+    		if(matchCounter===6){
+			myCoin += 2000;
+			displayMoney();
+			$('.mg-contents').hide();
+			$('.theWholeWorld').fadeIn(1000);
+			}   	 			
+   	 	}
+    });
+	$('.skip-button').click(function(){
+		$('.mg-contents').hide();
+		$('.theWholeWorld').fadeIn(1000);
+	})
+});
 
