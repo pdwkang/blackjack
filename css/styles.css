@@ -212,17 +212,19 @@ button.reset-bet{
 #myCoin{
 	border: white solid 1px;
 	text-align: right;
-	color: white;
 	font-size: 20px;
 	width: 90px;
 	padding: 0 5px;
+	color: white;
 }
 .flip{
 	backface-visibility: hidden;
 	transform: rotateX(2160deg) rotateY(2160deg);
 	transition: all 2s;
 }
-
+.color-orange{
+	color: orange !important;
+}
 .no-margin-left{
 	margin-left: 0 !important;
 }
@@ -296,7 +298,6 @@ button.reset-bet{
 	padding-left: 20px;
 } */
 .action2, .action4, .action6, .action8{
-	
 	color: grey;
 	padding-left: 20px;
 }

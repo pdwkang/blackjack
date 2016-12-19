@@ -23,7 +23,7 @@ var hitCounter = 0;
 // 10: 2nd pair final total calc   
 
 var placeBet = true;
-var myCoin = 1000;
+var myCoin = 0;
 var myBet = 0; // later get input from user
 var didIWin = false;
 
@@ -524,8 +524,15 @@ function shuffleDeck(){
 $(document).ready(function(){
 	setTimeout(function(){
 		$('.mg-tile-inner').toggleClass('flip')}, 500);
+	
 	setTimeout(function(){
-		$('.mg-tile-inner').toggleClass('flip')}, 5500);		
+		for(let i=0; i<gridSize; i++){
+			setTimeout(function(){
+				var tempClass = '.c' + i
+				// console.log(flipClass)
+				$(tempClass).toggleClass('flip')}, i*150)};
+		canClick = true;
+		}, 3000)
 
 	var gridSize = 12;
 	var mgHTML = '';
@@ -547,7 +554,7 @@ $(document).ready(function(){
 	for(let i=0; i<gridSize; i++){
 		card = cards[Math.floor(cardLocation[i]/2)];
 		mgHTML += '<div class="mg-tile col-sm-3">';
-			mgHTML += '<div class="mg-tile-inner">';
+			mgHTML += '<div class="mg-tile-inner c' + i +'">';
 				mgHTML += '<div class="mg-front">'+card+'</div>';
 				mgHTML += '<div class="mg-back"></div>';
 			mgHTML += '</div>';
@@ -559,18 +566,16 @@ $(document).ready(function(){
     	'<button class="skip-button frame">SKIP</button>');
 
 
-	var canClick = true;
+	var canClick = false;
 	var matchCounter = 0;
 	$('.mg-tile-inner').click(function(){
 	    if(canClick){    
  		   	$(this).toggleClass('flip');
-    		var cardsUp = $('.flip')
+    		var cardsUp = $('.flip');
     		if(cardsUp.length == 2){
     			canClick = false;
-    			// check to see if they are the same
-    			var cardsUpImages = cardsUp.find('.mg-front img')
+    			var cardsUpImages = cardsUp.find('.mg-front img');
 				if(cardsUpImages[0].src == cardsUpImages[1].src){
-    				// this is a match!
     				cardsUp.addClass('matched');
     				cardsUp.removeClass('flip');
 					canClick =true;
@@ -581,20 +586,30 @@ $(document).ready(function(){
     					canClick =true;
     				}, 600)
     			}
-    		}else{
-    		// do nothing
     		};
     		if(matchCounter===6){
-			myCoin += 2000;
-			displayMoney();
-			$('.mg-contents').hide();
-			$('.theWholeWorld').fadeIn(1000);
+				$('.mg-contents').hide();
+				$('.theWholeWorld').fadeIn(1000)
+   				for(let i = 0; i<60; i++){
+					setTimeout(function(){
+						myCoin += 50;
+						displayMoney();
+						$('#myCoin').toggleClass('color-orange');
+					}, i*50 + 1500)
+				};
 			}   	 			
    	 	}
     });
 	$('.skip-button').click(function(){
 		$('.mg-contents').hide();
 		$('.theWholeWorld').fadeIn(1000);
+		for(let i = 0; i<40; i++){
+			setTimeout(function(){
+				myCoin += 25;
+				displayMoney();
+				$('#myCoin').toggleClass('color-orange');
+			}, i*30 + 1500)
+		};
 	})
 });
 
