@@ -1,6 +1,6 @@
 body{
 	background-image: url("../images/background.jpg");
-
+	overflow: hidden;
 }
 .flip2{
 	backface-visibility: hidden;
@@ -8,17 +8,14 @@ body{
 	transition: all 4s;
 }
 .theWholeWorld{	
-	/* position: absolute; */
 	font-family: "Bungee Inline";
 	font-size: 22px;
 	background-size: 100%;
 	height: 100%;
 	display: none;
 }
-
-
-.game-wrapper{
-	/* display: none; */
+.throne img{
+	width:50%;
 }
 .top-margin{
 	margin-top: 5%;
@@ -34,66 +31,26 @@ body{
 	margin: auto;
 }
 .the-table{
-	/* background-color: darkblue; */
-	/* border: 5px solid #663300; */
 	border-radius: 10px;
 	margin-top: 50px;
 	padding: 30px 0;
-	/* transform: perspective(1500px) rotateX(35deg); */
-
 }
-.placehold{
-	width: 100%;
-}
-
-.dealer-cards{
-	/* perspective: 300px */
-}
-
-.hide-card-2{
-	margin: ;
-}
-
-.card{
-	height: 220px;
-	width: 14%;
-	/* background-color: #fff; */
-	color: black;
-	/* border: 2px solid black; */
-	/* #FDC91C */
-	padding: 0;
-	margin: 0;
-	/* transform: rotateY(25deg); */
-	/* display: inline-block; */
-    /* box-shadow: 4px 4px 5px darkorange; */
-}
-
-
 img {
-	width: 100%;
-	height: 100%;
+	max-width: 100%;
+	max-height: 100%;
 }
-
-.container {
-	width: 90% !important;
-}
-
 .dealer-total {
 	color: white;
+	margin-left: 0 !important;
 }
 .player-total {
 	color: white;
+	margin-left: 0 !important;
 }
-
-.dealer-cards .card{
-	/* float: right; */
-}
-
 .bet-wrapper{
 	position: absolute;
-	bottom: 20px;
+	bottom: 1px;
 	right: 20px;
-	/* background-color: white; */
 	padding: 20px;
 }
 .bet-wrapper div{
@@ -113,7 +70,6 @@ img {
  	font-size: 17px;
  	margin: 20px;
 }
-
 .deal{
  	background-image: url("../images/deal.jpeg");
  	background-repeat: no-repeat;
@@ -142,20 +98,15 @@ img {
 	background-image: url("../images/buttonHover.png");
 	color: blue;
 }
-
 button.doubleDown-button{
 	font-size: 13px;
 	line-height: 20px;
-
 }
-
 .frame:hover{
  	background-image: url("../images/buttonHover.png");
  	color: blue;
  	border: 1px blue solid;
 }
-
-
 .coin-frame{
 	background-image: url("../images/coin-frame.png");
  	background-repeat: no-repeat;
@@ -165,7 +116,6 @@ button.doubleDown-button{
  	line-height: 32px;
  	width: 50px;
  	text-align: center;
- 	/* font-family: Frijole; */
  	color: black;
  	font-size: 17px;
  	margin: 5px;
@@ -181,19 +131,15 @@ button.doubleDown-button{
 button.reset-bet{
 	font-size: 12px;
 }
-
 .margin-bot{
 	margin-top: -12px
 }
-
 .bet-square{
 	background: rgba(54, 25, 25, .5);
-	border-radius: 10%;
 	padding: 20px;
-	border: white 1px dashed;
+	border: white 2px solid;
 	font-family: "Bungee Inline";
 }
-
 .bet-text{
 	color: white;
 	font-size: 20px;
@@ -217,18 +163,12 @@ button.reset-bet{
 	padding: 0 5px;
 	color: white;
 }
-.flip{
-	backface-visibility: hidden;
-	transform: rotateX(2160deg) rotateY(2160deg);
-	transition: all 2s;
-}
 .color-orange{
 	color: orange !important;
 }
 .no-margin-left{
 	margin-left: 0 !important;
 }
-
 .rules{
  	background-image: url("../images/rules.jpeg");
  	background-repeat: no-repeat;
@@ -244,10 +184,9 @@ button.reset-bet{
  	top: 20px;
  	right: 20px;
 }
-
 .rule-description{
 	display: none;
-	width: 600px;
+	width: 400px;
 	background: rgba(54, 25, 25, .5);
 	position: absolute;
 	font-family: 'Istok Web';
@@ -256,13 +195,12 @@ button.reset-bet{
 	border: white 5px solid;
 	border-radius: 5%;
 	color: white;
+	font-size: 20px;
 }
-
 .description-header{
 	margin-top: 20px;
 	margin-bottom: 30px;
 }
-
 .hide-rules{
 	margin: 15px;
 	font-size: 15px;
@@ -270,17 +208,15 @@ button.reset-bet{
 	color: black;
 	font-family: 'bungee inline';
 }
-
 .action{
 	padding-top: 10px;
 	position: absolute;
-	bottom: 280px;
+	bottom: 260px;
 	right: 40px;
 	background: rgba(54, 25, 25, .5);
 	height: 230px;
-	width: 286px;
-	border-radius: 10%;
-	border: white dashed 1px;
+	width: 289px;
+	border: white solid 2px;
 	color: white;
 	font-size: 16px;
 	font-family: 'Istok Web';
@@ -289,19 +225,10 @@ button.reset-bet{
 	background: rgba(189, 125, 144, .5);
 	padding-left: 20px;
 }
-.action3, .action5, .action7{
+.action3, .action5, .action7, .action2, .action4, .action6, .action8{
 	color: white;
-	background: rgba(54, 125, 144, .5);
-	padding-left:20px;
-}
-/* .action9{
-	padding-left: 20px;
-} */
-.action2, .action4, .action6, .action8{
-	color: grey;
 	padding-left: 20px;
 }
-
 .action-header{
 	font-family: "Bungee Inline";
 	margin-top: -5px;
@@ -309,15 +236,11 @@ button.reset-bet{
 	text-align: center;
 	color: white;
 }
-
 .fireball, .fireball2{
-	/* background-image: url('../images/fireball.png'); */
-	/* border: 1px solid black; */
 	width: 23px;
 	height: 23px;
-	/* background-repeat: no-repeat; */
 	position: absolute;
-	bottom: 137px;
+	bottom: 123px;
 	z-index: 0;
 	right: 320px;
 }
@@ -325,34 +248,27 @@ button.reset-bet{
 	height: 100%;
 	width: 100%;
 }
-
 .fireball2.f1{
 	right: 20px;
 }
-
-
 .rotate {
     animation: spin .2s infinite linear;
 }
-
 @keyframes spin {
     100% {
         transform:rotate(360deg);
     }
 }
-
 .bet-square-wrapper{
 	transform-style: preserve-3d;
 	perspective: 500px;
 	position: relative;
 }
-
 .high-stakes{
 	background-image: url('../images/background2.jpg');
 	background-size: 100%;
 	perspective: 200px;
 }
-
 #winter{
 	width: 400px;
 	height: 300px;
@@ -360,14 +276,12 @@ button.reset-bet{
 	left: 40%;
 	top: 25%;	
 }
-
 #winter img{
 	width: 100%;
 }
 .blinka{
 	animation: blink 1s infinite linear;
 }
-
 @keyframes blink {
 	0% {
  	border: white 2px solid;
@@ -379,51 +293,106 @@ button.reset-bet{
  	border: white 2px solid;
 	}
 }
-
+.player-cards{
+	margin-left: 20px;
+	position: absolute;
+	top: 240px;
+}
+.dealer-cards{
+	margin-left: 20px;
+	position: absolute;
+}
+.bj-tile{
+	height: 165px;
+	width: 120px;
+	perspective: 500px; 
+	display: inline-block;
+	perspective: 500px; 
+	margin: 5px;
+	margin-top: 30px;
+}
+.bj-tile-inner{
+	padding: 0;
+	display: none;
+	width: 120px;
+	position: relative;
+	transform-style: preserve-3d;
+	transition: all .8s;
+}
+.card{
+	position: absolute;
+	top: 0;
+	left: 0;
+	backface-visibility: hidden;
+	border-radius: 10%;
+	transform: rotateY(180deg);
+	border: 2px solid white;
+}
+.card img{
+	height: 165px;
+	width: 120px;
+	border-radius: 10%;
+}
+.bj-back{
+	border: 2px solid white;
+	position: absolute;
+	top: 0;
+	left: 0; 
+	backface-visibility: hidden;
+	border-radius: 10%;
+	height: 165px;
+	width: 120px;
+	background: url('../images/memory-back.png') no-repeat 50% 25%; 
+}
 .mg-contents{
 	position: absolute;
-	margin:auto;
-	margin-left: 25%;
-	margin-top: 7%;
-	width: 550px;
-	height: 550px;
+	/* margin:auto; */
+	margin-left: 410px;
+	margin-top: 34px;
+	width: 530px;
+	height: 530px;
 	background: rgba(54, 25, 25, .5);
 	padding: 70px 70px 50px 90px;
-	border: 2px white solid;
+	/* border: 2px white solid; */
 	border-radius: 50%;
 	font-family: "Bungee Inline";
 	text-align: center;
 	color: white;
 	font-size: 20px;
 }
-/* memory game */
+.circle{
+	position: absolute;
+	margin-left: 390px;
+	margin-top: 10px;
+	height: 580px;
+	width: 580px;
+	animation: spin .7s infinite linear;
+	background-image: url('../images/circle.png');
+	background-repeat: no-repeat;
+	background-size: 100%;
+}	
+
 .mg-tile{
 	height: 100px;
 	min-width: 80px;
-	/* border: 2px solid black; */
 	perspective: 500px; 
 	padding: 0;
-	/* 500px depth */
 	margin: 5px 0;
 
 }
-
 .mg-tile-inner{
 	width: 80px;
 	position: relative;
 	transform-style: preserve-3d;
 	transition: all .8s;
-
 }
-
 .mg-front img{
 	max-width: 100%;
 	max-height: 100%;
 	height: 100px;
 	width: 80px;
-border-radius: 10%;
+	border-radius: 10%;
 }
-
 .mg-front, .mg-back{
 	position: absolute;
 	top: 0;
@@ -432,23 +401,135 @@ border-radius: 10%;
 	backface-visibility: hidden;
 	border-radius: 10%;
 }
-
 .mg-front{
 	transform: rotateY(180deg);
 }
-
 .mg-back{
 	background: url('../images/memory-back.png') no-repeat 50% 25%; 
 	height: 100px;
 	width: 80px;
-	
-	/* background-size: 50%; */
 }
-
 .flip, .matched{
 	transform: rotateY(-180deg)
 }
-
 .matched{
 	border-color: white;
+}
+.game-background{
+	position: absolute;
+	border: 2px solid white;	
+background:rgba(255,255,255, 0.2);	bottom: 150px;
+	right: 353px;
+	width: 800px;
+	height: 480px;
+	/* border-bottom-right-radius: 30%; */
+	/* border-bottom-left-radius: 30% */
+}
+.dragon{
+	position: absolute;
+	top: 100px;
+	left: 0px;
+	height: 240px;
+	width: 240px;
+	background: url("../images/dragon.png");
+	background-size: 2412px 1074px;
+	background-position: 0px 960px;
+	animation: fly 1s steps(8) infinite;
+}
+@keyframes fly{
+	100%{
+		background-position: -2015px 960px;
+	}
+}
+.fly-dragon{
+	position: absolute;
+	animation: fly-right 20s linear infinite;	
+}
+@keyframes fly-right{
+	0%{
+		top: 330px;
+		left: -200px;
+	}
+	50%{
+		top: 200px;
+	}
+	100%{
+		top: 00px;
+		left: 1300px;
+	}
+}
+.dragon2{
+	position: absolute;
+	height: 240px;
+	width: 240px;
+	background: url("../images/dragon.png");
+	background-size: 2412px 1074px;
+	background-position: 0px 960px;
+	animation: fly2 1s steps(8) infinite;
+	transform: rotateY(180deg);
+}
+@keyframes fly2{
+	100%{
+		background-position: -2015px 960px;
+	}
+}
+.fly-dragon2{
+	position: absolute;
+	animation: fly-right2 20s linear infinite;	
+}
+@keyframes fly-right2{
+	0%{
+		top: 100px;
+		left: 1300px;
+	}
+	50%{
+		top: 350px;
+	}
+	100%{
+		top: 280px;
+		left: -400px;
+	}
+}
+
+#the-canvas{
+	position: absolute;
+	top: 0;
+	left: 0;
+}
+
+.crow{
+	position: absolute;
+	right: 75px;
+	bottom: 500px;
+}
+
+.arrow{
+	width: 120px;
+	height: 200px;
+	transform: rotate(-45deg);
+	position: absolute;
+	animation: point 1.3s infinite linear;
+}
+
+@keyframes point{
+	0%{
+		right: 300px;
+		bottom: 130px;
+	}
+	25%{
+		right: 330px;
+		bottom: 160px;
+	}
+	50%{
+		right: 300px;
+		bottom: 130px;
+	}
+	75%{
+		right: 330px;
+		bottom: 160px;
+	}	
+	100%{right: 300px;
+		bottom: 130px;
+
+	}
 }

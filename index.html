@@ -9,66 +9,104 @@
 	<style>@import 'https://fonts.googleapis.com/css?family=Frijole';</style>
 	<style>@import 'https://fonts.googleapis.com/css?family=Bungee+Inline';</style>	
 	<style>@import 'https://fonts.googleapis.com/css?family=Istok+Web';</style>		
-	<!-- <script type="text/javascript" src="js/memory.js"></script> -->
 </head>
 <body>
-<!-- <div class='theNextNextWorld'> -->
-<!-- <div class='theNextWorld .flip2'> -->
+
 <div class="header"><img src='images/header.png'></div>
-
+<div class="hide-dragon fly-dragon"><div class='dragon'></div></div>
+<div class="hide-dragon fly-dragon2"><div class='dragon2'></div></div>
+<div class='crow'>
+	<img src='images/all-men.png'>
+</div>
 <div class='theWholeWorld'>
-	<!-- <div class='drago'>
-	</div> -->
 
-
-
-
-	<div class="container game-wrapper">
-		<div class="row top-margin">
-			<div class="the-table col-sm-12">
-				<div class="col-sm-12 dealer-hand-wrapper">
-					<div class="col-sm-1 dealer-total text-center">
-						<br>DEALER<br>
-						<br>
-						<span class="dealer-total-number"></span>
-					</div>					
-					<div class="col-sm-11 dealer-cards">
-						<div class="col-sm-1 card card-1"></div>
-						<div class="col-sm-1 card card-2 hide-card-2"></div>
-						<div class="col-sm-1 card card-3"></div>
-						<div class="col-sm-1 card card-4"></div>
-						<div class="col-sm-1 card card-5"></div>
-						<div class="col-sm-1 card card-6"></div>
-					</div>
+	<div class='game-background'>
+	<canvas id="the-canvas" height="480px" width="800px"></canvas>
+		<div class='dealer-cards'>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card1">
+					<div class="card card-1"></div>
+					<div class="bj-back"></div>
 				</div>
-
-				<div class="col-sm-12 player-hand-wrapper">
-					<div class="col-sm-1 player-total text-center">
-						<br>PLAYER<br><br><span class="player-total-number"></span>
-						<br><span class="player1-total-number"></span>
-						<br><span class="player2-total-number"></span>
-					</div>
-					<div class="col-sm-11 player-cards">
-						<div class="col-sm-1 card card-1">
-							<canvas class='dragon'></canvas>
-						</div>
-						<div class="col-sm-1 card card-2"></div>
-						<div class="col-sm-1 card card-3"></div>
-						<div class="col-sm-1 card card-4"></div>
-						<div class="col-sm-1 card card-5"></div>
-						<div class="col-sm-1 card card-6"></div>
-					</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card2">
+					<div class="card card-2"></div>
+					<div class="bj-back"></div>
 				</div>
-				
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card3">
+					<div class="card card-3"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card4">
+					<div class="card card-4"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card5">
+					<div class="card card-5"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card6">
+					<div class="card card-6"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+		</div>
+		<div class='player-cards'>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card1">
+					<div class="card card-1"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card2">
+					<div class="card card-2"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card3">
+					<div class="card card-3"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card4">
+					<div class="card card-4"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card5">
+					<div class="card card-5"></div>
+					<div class="bj-back"></div>
+				</div>
+			</div>
+			<div class="bj-tile">
+				<div class="bj-tile-inner card6">
+					<div class="card card-6"></div>
+					<div class="bj-back"></div>
+				</div>
 			</div>
 		</div>
 	</div>
+</div>
 
 <div class='bet-wrapper'>
 	<button class="hit-button frame">HIT</button>
 	<button class="stand-button frame">STAND</button>
 	<button class="split-button frame">SPLIT</button>
-	<button class="doubleDown-button frame"><div class='margin-bot'>DOUBLE DOWN</div></button>
+	<button class="doubleDown-button frame">
+	<div class='margin-bot'>DOUBLE DOWN</div></button>
 	
 	<!-- <div class="bet-square-wrapper"> -->
 	<div class='bet-square'>
@@ -85,27 +123,25 @@
 			<button class="reset-bet deal">RESET BET</button>
 		</div>
 	</div>
-	<!-- <div class="high-stakes"> -->
-	<!-- </div> -->
-
 </div>
 
+
 <button class="rules">rules</button>
+
 <div class='rule-description text-center'>
 	<div class='description-header text-center'>
-	KING'S LANDING CASINO</div>
-DEALER STAYS ON SOFT 17<br>
-ONLY ACES SPLIT<br>
-DECK SHUFFLES EVERY HAND<br>
-ONE HAND PER PLAYER<br>
-NO WEAPONS OR SMARTPHONES<br>
-NO MAGICIANS OR PET DRAGONS
-<br>
-<button class="hide-rules">HIDE</button>
+		KING'S LANDING CASINO</div>
+	DEALER STAYS ON SOFT 17<br>
+	ONLY ACES SPLIT<br>
+	DECK SHUFFLES EVERY HAND<br>
+	ONE HAND PER PLAYER<br>
+	NO WEAPONS OR SMARTPHONES<br>
+	NO MAGICIANS OR PET DRAGONS<br>
+	<button class="hide-rules">HIDE</button>
 </div>
 
 <div class='action'>
-<div class="action-header">Game Log</div>
+	<div class="action-header">Game Log</div>
 	<div class='action1'></div>
 	<div class='action2'></div>
 	<div class='action3'></div>
@@ -118,22 +154,12 @@ NO MAGICIANS OR PET DRAGONS
 	<br><br>CLICK ABOVE FOR RULES
 	</span></div>
 </div>
-<div class="fireball rotate">
-	<img src='images/fireball.png'>
-</div>
-<div class="fireball2 f1 rotate">
-	<img src='images/fireball.png'>
+<div class='arrow'>
+	<img src='images/arrow.png'>
 </div>
 
-<div id='winter'>
-	<!-- <img src='images/winteriscoming.png'> -->
-</div>
-
-
-</div>
-<div class='mg-contents'>
-</div>
-
+<div class="circle"></div>
+<div class='mg-contents'></div>
 
 </body>
 </html>

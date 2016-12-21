@@ -8,7 +8,6 @@ var firstPair=[];
 var secondPair=[];
 var dealerCard2
 var valueOfDC2
-
 var hitCounter = 0;
 //  0: deal     
 //  1: hit/stand/doubledown     
@@ -21,25 +20,18 @@ var hitCounter = 0;
 //  8: 1st pair calculation(split)
 //  9: 2nd pair hitting (split)      
 // 10: 2nd pair final total calc   
-
 var placeBet = true;
 var myCoin = 0;
 var myBet = 0; // later get input from user
 var didIWin = false;
 
 $(document).ready(function(){
-
-
 	$('.deal-button').click(function(){
 		theDeck = createDeck(1)
 		if((!hitCounter)&&(myBet>0)){
-			$('#winter').hide()
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			$('.player-total-number').show()
-			// $('.deal-button').addClass('flip');
+			$('.arrow').hide();
 			reset();
-			// theDeck[0]='1s'
-			// theDeck[1]='1d'			
 			playerHands.push(theDeck.shift());
 			playerHands.push(theDeck.shift());
 			dealerHands.push(theDeck.shift());
@@ -59,7 +51,6 @@ $(document).ready(function(){
 			}
 		}
 	});
-
 	$('.hit-button').click(function(){
 		$('.deal-button').removeClass('flip');
 		if((hitCounter===1)||(hitCounter===2)){
@@ -94,26 +85,25 @@ $(document).ready(function(){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
 				placeCard('player', 6, playerHands[lastCardIndex]);
-				secondPair.push(playerHands[lastCardIndex])
-				hitCounter = 10
+				secondPair.push(playerHands[lastCardIndex]);
+				hitCounter = 10;
 				calculateTotal(secondPair, 'player2');
 				//stay code
 				if(hitCounter>0){
 					placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);		
 					var	dealerTotal = calculateTotal(dealerHands, 'dealer');
 					while(dealerTotal<17){
-					dealerHands.push(theDeck.shift())
-					var lastCardIndex = dealerHands.length - 1;
-					var slotForNewCard = dealerHands.length;
-					placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
-					dealerTotal = calculateTotal(dealerHands, 'dealer')
+						dealerHands.push(theDeck.shift())
+						var lastCardIndex = dealerHands.length - 1;
+						var slotForNewCard = dealerHands.length;
+						placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
+						dealerTotal = calculateTotal(dealerHands, 'dealer')
 					}
 				checkWin2();
 				}				
 			}
 		}
 	});
-
 	$('.stand-button').click(function(){
 		if(hitCounter>0){
 			hitCounter = 3
@@ -129,73 +119,72 @@ $(document).ready(function(){
 			if(hitCounter>5){checkWin2()}else{checkWin();}
 		}
 	});
-
 	$('.split-button').click(function(){       // you only get one hit after split
 		if((hitCounter===1)
 			&&(Number(playerHands[0].slice(0, -1))===1)
-			&&(Number(playerHands[1].slice(0, -1))===1))
-			{if(myCoin>=myBet){
-			myCoin -= myBet
-			placeCard('player', 4, playerHands[1]);
-			$('.player-cards .card-2').html('');
-			$('.player-cards .card-4').css({'border-left':'5px dashed black'})
-			playerHands.push(theDeck.shift());   //3th   [2]
-			playerHands.push(theDeck.shift());   //4th   [3]
-			hitCounter=6
-			placeCard('player', 2, playerHands[2]);
-			placeCard('player', 5, playerHands[3]);
-
-			firstPair = [playerHands[0], playerHands[2]]   //first two cards after split
-			secondPair = [playerHands[1], playerHands[3]]
-			calculateTotal(firstPair, 'player1');
-			hitCounter = 7;      // split condition
-			calculateTotal(secondPair, 'player2');	
-			// console.log(firstPair)
-			placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);		
-			var	dealerTotal = calculateTotal(dealerHands, 'dealer');
-			while(dealerTotal<17){
-				dealerHands.push(theDeck.shift())
-				var lastCardIndex = dealerHands.length - 1;
-				var slotForNewCard = dealerHands.length;
-				placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
-				dealerTotal = calculateTotal(dealerHands, 'dealer');}
-			checkWin2();}else{describeAction('NOT ENOUGH COINS TO SPLIT!')}
+			&&(Number(playerHands[1].slice(0, -1))===1)){
+			if(myCoin>=myBet){
+				myCoin -= myBet
+				placeCard('player', 4, playerHands[1]);
+				$('.player-cards .card-2').html('');
+				$('.player-cards .card-4').css({'border-left':'5px dashed black'})
+				playerHands.push(theDeck.shift());   //3th   [2]
+				playerHands.push(theDeck.shift());   //4th   [3]
+				hitCounter=6
+				placeCard('player', 2, playerHands[2]);
+				placeCard('player', 5, playerHands[3]);	
+				firstPair = [playerHands[0], playerHands[2]]   //first two cards after split
+				secondPair = [playerHands[1], playerHands[3]]
+				calculateTotal(firstPair, 'player1');
+				hitCounter = 7;      // split condition
+				calculateTotal(secondPair, 'player2');	
+				// console.log(firstPair)
+				placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);		
+				var	dealerTotal = calculateTotal(dealerHands, 'dealer');
+				while(dealerTotal<17){
+					dealerHands.push(theDeck.shift())
+					var lastCardIndex = dealerHands.length - 1;
+					var slotForNewCard = dealerHands.length;
+					placeCard('dealer', slotForNewCard, dealerHands[lastCardIndex])
+					dealerTotal = calculateTotal(dealerHands, 'dealer');}
+				checkWin2();
+			}else{describeAction('NOT ENOUGH COINS TO SPLIT!')}
 		}else{
 			describeAction('YOU CAN ONLY SPLIT ACES!')
 		}		
 	});
-
 	$('.doubleDown-button').click(function(){
 		if(hitCounter===1){
 			myCoin -= myBet
 			myBet = myBet * 2;
 			displayMoney();
 			if(hitCounter===1){
-			if(calculateTotal(playerHands,'player') < 22){
-				playerHands.push(theDeck.shift());		
-				var lastCardIndex = playerHands.length-1;
-				var slotForNewCard = playerHands.length;
-				placeCard('player', slotForNewCard, playerHands[lastCardIndex]);
-				calculateTotal(playerHands, 'player');
-			}else {
-				checkWin()  //if this runs, hitcounter = 0
-			};
+				if(calculateTotal(playerHands,'player') < 22){
+					playerHands.push(theDeck.shift());		
+					var lastCardIndex = playerHands.length-1;
+					var slotForNewCard = playerHands.length;
+					placeCard('player', slotForNewCard, playerHands[lastCardIndex]);
+					calculateTotal(playerHands, 'player');
+				}else{
+					checkWin()  //if this runs, hitcounter = 0
+				};
 			//stand-button code copied below
-			if(hitCounter!==0){  // if bust hit condition wud be 0 so this wont run
-				hitCounter=2
-				placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);
-				if(calculateTotal(playerHands,'player') < 21){
-					var	dealerTotal = calculateTotal(dealerHands, 'dealer');
-					while(dealerTotal<17){
-						dealerHands.push(theDeck.shift())
-						var lastCardIndex1 = dealerHands.length - 1;
-						var slotForNewCard1 = dealerHands.length;
-						placeCard('dealer', slotForNewCard1, dealerHands[lastCardIndex1]);
-						dealerTotal = calculateTotal(dealerHands, 'dealer');
+				if(hitCounter!==0){  // if bust hit condition wud be 0 so this wont run
+					hitCounter=2
+					placeCard('dealer', 2, dealerHands[dealerHands.length - 1]);
+					if(calculateTotal(playerHands,'player') < 21){
+						var	dealerTotal = calculateTotal(dealerHands, 'dealer');
+						while(dealerTotal<17){
+							dealerHands.push(theDeck.shift())
+							var lastCardIndex1 = dealerHands.length - 1;
+							var slotForNewCard1 = dealerHands.length;
+							placeCard('dealer', slotForNewCard1, dealerHands[lastCardIndex1]);
+							dealerTotal = calculateTotal(dealerHands, 'dealer');
+						}
 					}
+					hitCounter = 4
+					checkWin();
 				}
-				hitCounter = 4
-			checkWin();}
 			}		
 		}
 	});
@@ -219,33 +208,26 @@ $(document).ready(function(){
 		myCoin -= 500}
 		displayMoney();
 	})
-
 	$('.reset-bet').click(function(){
 		if(hitCounter===0){
 		myCoin += myBet;
 		myBet = 0;
 		displayMoney();}
 	})
-
 	$('.rules').click(function(){
 		$('.rule-description').slideDown(1000);
-		$('.bet-wrapper, .action, .fireball, .fireball2').fadeOut('slow');
+		$('.bet-wrapper, .action, .arrow, .game-background').fadeOut('slow');
 		$(this).hide();
 	})	
-
 	$('.hide-rules').click(function(){
 		$('.rule-description').slideUp(1000);
-		$('.bet-wrapper, .rules, .action, .fireball, .fireball2').delay(800).fadeIn('slow');
-		
+		$('.bet-wrapper, .rules, .action, .arrow, .game-background').fadeIn('slow');
 	})		
 });
-
 function displayMoney(){
 	$('#myCoin').html(myCoin);
 	$('#betAmount').html(myBet);
 }
-// var dealerTotal = 0;
-
 function createDeck(numberOfDecks){
 	var newDeck =[];
 	var suits = ['h','s','d','c'];
@@ -255,8 +237,8 @@ function createDeck(numberOfDecks){
 				newDeck.push(k + suits[j]);
 			}	
 		}
-	};	return newDeck;}
-
+	};	return newDeck;
+}
 // create divs describe action
 var gamelog = 1
 function describeAction(aa){
@@ -276,12 +258,8 @@ function describeAction(aa){
 	var a1 = $('.action1').html();
 	$('.action2').html(a1)
 	$('.action1').html(gamelog + ": " + aa)		
-	gamelog++}, 1200)
+	gamelog++}, 900)
 } 
-
-
-
-
 
 function shuffleDeck(){
 	for(let i = 0; i<10000; i++){
@@ -290,44 +268,79 @@ function shuffleDeck(){
 		var temp = theDeck[random1];
 		theDeck[random1] = theDeck[random2];
 		theDeck[random2] = temp;
-	}};
+	}
+};
 function placeCard(who, where, whatCard){
 	var classSelector = '.' + who + '-cards .card-' + where;
 	$(classSelector).html('<img src="images/' + whatCard + '.png">');
-	$(classSelector).hide();
-	
+	var flipThis = '.' + who + '-cards .bj-tile-inner.card' + where; 
 	if(classSelector === ".dealer-cards .card-1"){
-		$(classSelector).delay(600).slideDown('slow');	
+		setTimeout(function(){
+			$(flipThis).show()}, 800)
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1200);
+		// $(flipThis).delay(800).toggleClass('flip');
 	}else if(classSelector === ".player-cards .card-2"){
-		$(classSelector).delay(1200).slideDown('slow');
+		// $(classSelector).delay(1200).slideDown('slow');
+		setTimeout(function(){
+			$(flipThis).show()}, 1200)
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1600);
+	}else if(classSelector === ".player-cards .card-1"){
+		setTimeout(function(){
+			$(flipThis).show()}, 400)
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 800);						
 	}else if(classSelector === ".player-cards .card-3"){
-		$(classSelector).slideDown('slow');			
+		$(flipThis).show()
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 400)
 	}else if(classSelector === ".dealer-cards .card-2"){
 		if(!hitCounter){
-		$(classSelector).html('<img src="images/empty.png">');
-		$(classSelector).delay(1800).fadeIn('slow');
+			setTimeout(function(){
+				$(flipThis).show()}, 1600);		
 		dealerCard2 = classSelector;
 		valueOfDC2 ='<img src="images/' + whatCard + '.png">';
 		}else{
-		$(dealerCard2).html(valueOfDC2);
-		$(dealerCard2).delay(400).slideDown('slow');
+			$(dealerCard2).html(valueOfDC2);
+			$(flipThis).show()
+			setTimeout(function(){
+				$(flipThis).toggleClass('flip')}, 800)
 		}
 	}else if(classSelector === ".dealer-cards .card-3"){
-		$(classSelector).delay(600).slideDown('slow');	
+		setTimeout(function(){
+			$(flipThis).show()}, 800);		
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1200);		
 	}else if(classSelector === ".dealer-cards .card-4"){
-		$(classSelector).delay(1200).slideDown('slow');	
+		setTimeout(function(){
+			$(flipThis).show()}, 1200);
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1600);		
 	}else if(classSelector === ".dealer-cards .card-5"){
-		$(classSelector).delay(1800).slideDown('slow');
-	}else if(classSelector === ".dealer-cards .card-6"){
-		$(classSelector).delay(2400).slideDown('slow');							
+		setTimeout(function(){
+			$(flipThis).show()}, 1600);
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 2000);		
+	}else if(classSelector === ".dealer-cards .card-6"){						
+		setTimeout(function(){
+			$(flipThis).show()}, 2000);
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 2400);		
 	}else if((classSelector === ".player-cards .card-3")&&
 		(hitCounter===6)){
-		$(classSelector).delay(1200).slideDown('slow');	
+		$(flipThis).show()
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1200);		
 	}else if((classSelector === ".player-cards .card-5")&&
 		(hitCounter===6)){
-		$(classSelector).delay(1800).slideDown('slow');							
-	}else{$(classSelector).hide();
-		$(classSelector).delay(100).slideDown('slow');
+		$(flipThis).show()
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 1800);		
+	}else{
+		$(flipThis).show()
+		setTimeout(function(){
+			$(flipThis).toggleClass('flip')}, 400);		
 	}
 }	
 
@@ -341,13 +354,11 @@ function calculateTotal(hand, who){
 		}else{
 			cardValue = Number(hand[i].slice(0, -1))
 			if(cardValue>10){cardValue=10};
-
 			if(cardValue===1){
 				numberOfAces++;
 				cardValue = 11};
 			total += cardValue;
 		};
-
 		if((total>21)&&(numberOfAces>0)){
 			total -= 10;
 			numberOfAces -= 1		
@@ -369,18 +380,19 @@ function calculateTotal(hand, who){
 	if(hitCounter>6){
 		$('.player-total-number').text("");			
 	}
-	return total}
+	return total
+}
 function checkWin(){
 	hitCounter=2;
 	var playerTotal = calculateTotal(playerHands, 'player');
 	var dealerTotal = calculateTotal(dealerHands, 'dealer');
 	if(playerTotal>21){
 			describeAction('BETTER LUCK NEXT HAND!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();			
+			$('.arrow').show();			
 	}else if(dealerTotal>21){
 		myCoin += (myBet*2)
 			describeAction('YOU WON ' + myBet + ' COINS!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 	}else{
 		if(playerTotal>dealerTotal){
 			myCoin += (myBet*2);
@@ -388,19 +400,18 @@ function checkWin(){
 			myCoin += myBet/2;
 			// console.log('blackjack you won +' + myBet/2)
 			describeAction('BLACKJACK! +' + (myBet/2) +' COINS!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
 			}
 			// console.log('you won ' + myBet)
 			describeAction('YOU WON ' + myBet + ' COINS!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 		}else if(dealerTotal>playerTotal){
 			// console.log('dealer wins')
 			describeAction('BETTER LUCK NEXT HAND!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 		}else{
 			myCoin += myBet
 			describeAction('PUSH! IT\'S A TIE!')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 		}
 	};
 	hitCounter = 0;
@@ -415,9 +426,7 @@ function checkWin2(){
 	var player2 = calculateTotal(secondPair, 'player');
 	var dealerTotal = calculateTotal(dealerHands, 'dealer');
 	if(player1>21){
-			// console.log('first pair: dealer wins')
 			describeAction('YOU LOST HAND #1')
-
 	}else if(dealerTotal>21){
 			describeAction('YOU WON ' + myBet + ' ON HAND #1')
 			myCoin += (myBet*2)
@@ -433,25 +442,24 @@ function checkWin2(){
 			myCoin += myBet
 		}
 	};
-
 	if(player2>21){
 			describeAction('YOU LOST HAND #2')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 	}else if(dealerTotal>21){
 			describeAction('YOU WON ' + myBet + ' ON HAND #2')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 			myCoin += (myBet*2)
 	}else{
 		if(player2>dealerTotal){
 			describeAction('YOU WON ' + myBet + ' ON HAND #2')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 			myCoin += (myBet*2)
 		}else if(dealerTotal>player2){
 			describeAction('YOU LOST HAND #2')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 		}else{
 			describeAction('YOU PUSHED HAND #2')
-			$('.fireball, .fireball2').toggleClass('rotate').toggle();
+			$('.arrow').show();			
 			myCoin += myBet
 		}
 	};
@@ -476,22 +484,27 @@ function reset(){
 	$('.player1-total-number').text("")
 	$('.player2-total-number').text("")
 	$('.player-cards .card-4').css({'border-left':'none'})
+	$('.bj-tile-inner').removeClass('flip')
+	$('.bj-tile-inner').hide()
 	shuffleDeck();
 }
 
-
-
-
-
-
-
-
-
-
 createDeck(1);
 shuffleDeck();
-////////////////
-// MEMORY GAME
+
+
+
+
+
+
+
+
+
+
+
+
+//////////////////
+// MEMORY GAME //
 
 var cards = [
 '<img src="images/card1.jpg">',
@@ -508,29 +521,16 @@ var cards = [
 '<img src="images/card12.jpg">',
 ];
 
-function shuffleDeck(){
-	for(let i = 0; i<10000; i++){
-		var random1 = Math.floor(Math.random() * theDeck.length);
-		var random2 = Math.floor(Math.random() * theDeck.length);
-		var temp = theDeck[random1];
-		theDeck[random1] = theDeck[random2];
-		theDeck[random2] = temp;
-	}
-};
-   
-
-
+var startDrawing = false;
 // All code will wait until the DOM is ready!
 $(document).ready(function(){
 	setTimeout(function(){
 		$('.mg-tile-inner').toggleClass('flip')}, 500);
-	
 	setTimeout(function(){
 		for(let i=0; i<gridSize; i++){
 			setTimeout(function(){
 				var tempClass = '.c' + i
-				// console.log(flipClass)
-				$(tempClass).toggleClass('flip')}, i*150)};
+				$(tempClass).toggleClass('flip')}, i*300)};
 		canClick = true;
 		}, 3000)
 
@@ -589,27 +589,116 @@ $(document).ready(function(){
     		};
     		if(matchCounter===6){
 				$('.mg-contents').hide();
-				$('.theWholeWorld').fadeIn(1000)
+				$('.circle').fadeOut();
+				$('.theWholeWorld').fadeIn(1000);
+				clearInterval(spinSpin);
+				$('.arrow').show();
+				startDrawing = true;
    				for(let i = 0; i<60; i++){
 					setTimeout(function(){
 						myCoin += 50;
 						displayMoney();
 						$('#myCoin').toggleClass('color-orange');
-					}, i*50 + 1500)
+					}, i*90 + 1500)
 				};
 			}   	 			
    	 	}
     });
 	$('.skip-button').click(function(){
-		$('.mg-contents').hide();
+		$('.mg-contents').addClass('.flip2').hide();
+		$('.circle').fadeOut();
 		$('.theWholeWorld').fadeIn(1000);
-		for(let i = 0; i<40; i++){
+		clearInterval(spinSpin);
+		$('.arrow').show();
+		startDrawing = true;
+		for(let i = 0; i<50; i++){
 			setTimeout(function(){
-				myCoin += 25;
+				myCoin += 20;
 				displayMoney();
 				$('#myCoin').toggleClass('color-orange');
-			}, i*30 + 1500)
+			}, i*50 + 1500)
 		};
 	})
 });
 
+var colorCounter = 0
+function changeColor(){
+	colorCounter++
+	if(colorCounter===1){$('.mg-front, .mg-back').css({'border-color':'red'})};
+	if(colorCounter===2){$('.mg-front, .mg-back').css({'border-color':'white'})}
+	if(colorCounter===3){$('.mg-front, .mg-back').css({'border-color':'blue'})}
+	if(colorCounter===4){$('.mg-front, .mg-back').css({'border-color':'skyblue'})}
+	if(colorCounter===5){$('.mg-front, .mg-back').css({'border-color':'green'})}
+	if(colorCounter===6){$('.mg-front, .mg-back').css({'border-color':'yellow'})}
+	if(colorCounter===7){$('.mg-front, .mg-back').css({'border-color':'orange'})
+		colorCounter = 0;}	
+}
+var spinSpin = setInterval(changeColor, 300)
+
+
+
+// canvas
+$(document).ready(function(){
+var canvas = document.getElementById('the-canvas');
+var context = canvas.getContext('2d');
+var r = 0;
+var g = 0;
+var b = 0;
+var x = 30;
+var y = 30;
+var radius = 30;
+var endArc = 0;
+var xDirection = 1
+var yDirection = 1
+var xBallSpeed = 15
+var yBallSpeed = 16
+var rectCounter = 0
+
+function draw(){
+if(startDrawing){
+	if(rectCounter===10){
+	// context.clearRect(0,0,500,500);
+	rectCounter = 0
+	radius = 0}
+	context.fillStyle = '#' + r + g + b;
+	context.beginPath();
+	context.arc(x, y, radius, 0*Math.PI, Math.PI*endArc);
+	context.fill();
+	x += xBallSpeed*xDirection
+	y += yBallSpeed*yDirection
+	
+	if(x >= 780){
+	xDirection = -1;
+	changeColor2();
+	xBallSpeed = 19;
+	}
+	
+	if(x <= 10){
+	xDirection = +1;
+	changeColor2();
+	xBallSpeed = 7}
+	
+	if(y >= 450){
+	yDirection = -1;
+	changeColor2();
+	yBallSpeed = 22}
+	
+	if(y <= 10){
+	yDirection = +1;
+	changeColor2();
+	yBallSpeed = 12}
+	endArc += 1;
+	rectCounter++
+	radius = (rectCounter);
+	}
+}
+var ballInterval = setInterval(draw, 45);
+
+function changeColor2(){
+	r = Math.floor(Math.random()*200)
+	g = Math.floor(Math.random()*22)*Math.floor(Math.random()*10)
+	b = Math.floor(Math.random()*150)
+}
+
+$('.arrow').hide();
+})
