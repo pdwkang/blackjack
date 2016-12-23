@@ -2,11 +2,28 @@ body{
 	background-image: url("../images/background.jpg");
 	overflow: hidden;
 }
+.hideThis{
+	display: none;
+}
+.score{
+	background: rgba(54, 25, 25, .5);
+	/* border: 2px solid white; */
+	color: white;
+	position: absolute;
+	bottom: 580px;
+	right: 1300px;
+}
 .flip2{
 	backface-visibility: hidden;
 	transform: rotateX(720deg) rotateY(720deg);
 	transition: all 4s;
 }
+.player1-total-number {
+	display: none;
+}	
+.player2-total-number {
+	display: none;
+}			
 .theWholeWorld{	
 	font-family: "Bungee Inline";
 	font-size: 22px;
@@ -23,9 +40,9 @@ body{
 .header{
 	height: 60px;
 	width: 500px;
-	margin-left: 20px;
+	margin: auto;
 	margin-top: 20px;
-	position: absolute;
+	/* position: absolute; */
 }
 .header img{
 	margin: auto;
@@ -64,17 +81,19 @@ img {
  	height: 62px;
  	line-height: 62px;
  	width: 100px;
- 	text-align: center;
  	font-family: Frijole;
  	color: black;
  	font-size: 17px;
  	margin: 20px;
+	box-shadow: 3px 3px 10px 5px #000;
+
 }
 .deal{
  	background-image: url("../images/deal.jpeg");
  	background-repeat: no-repeat;
  	background-size: 100%;
  	border: 2px solid white;
+	box-shadow: 3px 3px 10px 5px #000;
  	height: 62px;
  	line-height: 55px;
  	width: 110px;
@@ -84,6 +103,7 @@ img {
  	margin-left: 20px;
  	color: whitesmoke;	
  	z-index: 3;
+ 	margin-right: -5px;
 }
 .deal:hover{
 	background-image: url("../images/dealHover.jpeg");
@@ -123,6 +143,7 @@ button.doubleDown-button{
  	border: white 2px solid;
  	color: brown;
  	border-radius: 10%;
+	box-shadow: 3px 3px 10px 5px #000;
 }
 .coin-frame:hover{
  	background-image: url("../images/coinHover.jpeg");
@@ -137,8 +158,10 @@ button.reset-bet{
 .bet-square{
 	background: rgba(54, 25, 25, .5);
 	padding: 20px;
+	margin-left: 110px;
 	border: white 2px solid;
 	font-family: "Bungee Inline";
+	box-shadow: 3px 3px 10px 5px #000;
 }
 .bet-text{
 	color: white;
@@ -154,6 +177,7 @@ button.reset-bet{
 	font-size: 20px;
 	width: 90px;
 	padding: 0 5px;
+
 }
 #myCoin{
 	border: white solid 1px;
@@ -174,6 +198,7 @@ button.reset-bet{
  	background-repeat: no-repeat;
  	background-size: 100%;
  	border: 2px solid yellow;
+ 	box-shadow: 3px 3px 10px 5px #000;
  	height: 44px;
  	line-height: 40px;
  	width: 80px;
@@ -196,6 +221,7 @@ button.reset-bet{
 	border-radius: 5%;
 	color: white;
 	font-size: 20px;
+	box-shadow: 3px 3px 10px 5px #000;
 }
 .description-header{
 	margin-top: 20px;
@@ -215,11 +241,12 @@ button.reset-bet{
 	right: 40px;
 	background: rgba(54, 25, 25, .5);
 	height: 230px;
-	width: 289px;
+	width: 287px;
 	border: white solid 2px;
 	color: white;
 	font-size: 16px;
 	font-family: 'Istok Web';
+	box-shadow: 3px 3px 10px 5px #000;
 }
 .action1{
 	background: rgba(189, 125, 144, .5);
@@ -296,7 +323,7 @@ button.reset-bet{
 .player-cards{
 	margin-left: 20px;
 	position: absolute;
-	top: 240px;
+	top: 250px;
 }
 .dealer-cards{
 	margin-left: 20px;
@@ -345,25 +372,27 @@ button.reset-bet{
 	background: url('../images/memory-back.png') no-repeat 50% 25%; 
 }
 .mg-contents{
-	position: absolute;
-	/* margin:auto; */
-	margin-left: 410px;
-	margin-top: 34px;
+	box-shadow: 3px 3px 10px 5px #000;
+	/* position: absolute; */
+	margin:auto;
+	/* margin-left: 430px; */
+	margin-top: 50px;
 	width: 530px;
 	height: 530px;
 	background: rgba(54, 25, 25, .5);
-	padding: 70px 70px 50px 90px;
-	/* border: 2px white solid; */
-	border-radius: 50%;
+	padding: 55px 70px 20px 80px;
+	border: 2px white solid;
+	/* border-radius: 50%; */
 	font-family: "Bungee Inline";
 	text-align: center;
 	color: white;
-	font-size: 20px;
+	font-size: 22px;
 }
 .circle{
+	display: none;
 	position: absolute;
-	margin-left: 390px;
-	margin-top: 10px;
+	margin-left: 413px;
+	margin-top: 27px;
 	height: 580px;
 	width: 580px;
 	animation: spin .7s infinite linear;
@@ -385,6 +414,7 @@ button.reset-bet{
 	position: relative;
 	transform-style: preserve-3d;
 	transition: all .8s;
+
 }
 .mg-front img{
 	max-width: 100%;
@@ -392,6 +422,7 @@ button.reset-bet{
 	height: 100px;
 	width: 80px;
 	border-radius: 10%;
+
 }
 .mg-front, .mg-back{
 	position: absolute;
@@ -400,6 +431,8 @@ button.reset-bet{
 	border: 2px solid white;
 	backface-visibility: hidden;
 	border-radius: 10%;
+	box-shadow: 3px 3px 10px 5px #000;
+
 }
 .mg-front{
 	transform: rotateY(180deg);
@@ -416,14 +449,14 @@ button.reset-bet{
 	border-color: white;
 }
 .game-background{
+	box-shadow: 3px 3px 10px 5px #000;
 	position: absolute;
 	border: 2px solid white;	
-background:rgba(255,255,255, 0.2);	bottom: 150px;
-	right: 353px;
+	background: rgba(54, 25, 25, .5);
+	bottom: 20px;
+	right: 345px;
 	width: 800px;
-	height: 480px;
-	/* border-bottom-right-radius: 30%; */
-	/* border-bottom-left-radius: 30% */
+	height: 610px;
 }
 .dragon{
 	position: absolute;
@@ -498,6 +531,7 @@ background:rgba(255,255,255, 0.2);	bottom: 150px;
 }
 
 .crow{
+	display: none;
 	position: absolute;
 	right: 75px;
 	bottom: 500px;
@@ -506,30 +540,31 @@ background:rgba(255,255,255, 0.2);	bottom: 150px;
 .arrow{
 	width: 120px;
 	height: 200px;
-	transform: rotate(-45deg);
+	transform: rotate(0deg);
 	position: absolute;
 	animation: point 1.3s infinite linear;
+	display: none;
 }
 
 @keyframes point{
 	0%{
-		right: 300px;
-		bottom: 130px;
+		right: 340px;
+		bottom: 70px;
 	}
 	25%{
-		right: 330px;
-		bottom: 160px;
+		right: 380px;
+		bottom: 100px;
 	}
 	50%{
-		right: 300px;
-		bottom: 130px;
+		right: 340px;
+		bottom: 70px;
 	}
 	75%{
-		right: 330px;
-		bottom: 160px;
+		right: 380px;
+		bottom: 100px;
 	}	
-	100%{right: 300px;
-		bottom: 130px;
+	100%{right: 340px;
+		bottom: 70px;
 
 	}
 }
