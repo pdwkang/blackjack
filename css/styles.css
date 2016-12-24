@@ -5,6 +5,14 @@ body{
 .hideThis{
 	display: none;
 }
+.universe{
+	display: none;
+	height: 650px;
+	position: relative;
+	margin: auto;
+	width: 1400px;
+
+}
 .score{
 	background: rgba(54, 25, 25, .5);
 	/* border: 2px solid white; */

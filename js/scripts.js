@@ -1,6 +1,8 @@
-//---------------------------------
-//---------------------------------
-//-------------GLOBALS-------------
+/////////////////////////////
+/////////////////////////////
+///////BLACKJACK GAME////////
+/////////////////////////////
+/////////////////////////////
 var theDeck = createDeck(1);  //saves whatever function returned
 var playerHands = [];
 var dealerHands = [];
@@ -217,12 +219,12 @@ $(document).ready(function(){
 	})
 	$('.rules').click(function(){
 		$('.rule-description').slideDown(1000);
-		$('.bet-wrapper, .action, .arrow, .game-background').fadeOut('slow');
+		$('.bet-wrapper, .action, .crow, .arrow, .game-background').fadeOut('slow');
 		$(this).hide();
 	})	
 	$('.hide-rules').click(function(){
 		$('.rule-description').slideUp(1000);
-		$('.bet-wrapper, .rules, .action, .arrow, .game-background').fadeIn('slow');
+		$('.bet-wrapper, .rules, .action, .crow, .arrow, .game-background').fadeIn('slow');
 	})		
 });
 function displayMoney(){
@@ -240,7 +242,9 @@ function createDeck(numberOfDecks){
 		}
 	};	return newDeck;
 }
-// create divs describe action
+//////////////////
+/////GAME LOG/////
+//////////////////
 var gamelog = 1
 function describeAction(aa){
 	setTimeout(function(){
@@ -490,23 +494,14 @@ function reset(){
 	shuffleDeck();
 }
 
-createDeck(1);
-shuffleDeck();
-
-
-
-
-
-
-
-
-
 
 
 
 //////////////////
+//////////////////
 // MEMORY GAME //
-
+//////////////////
+//////////////////
 var cards = [
 '<img src="images/card1.jpg">',
 '<img src="images/card2.jpg">',
@@ -523,7 +518,6 @@ var cards = [
 ];
 
 var startDrawing = false;
-// All code will wait until the DOM is ready!
 $(document).ready(function(){
 	setTimeout(function(){
 		$('.mg-tile-inner').toggleClass('flip')}, 500);
@@ -589,6 +583,7 @@ $(document).ready(function(){
     			}
     		};
     		if(matchCounter===6){
+				$('.universe').show()    			
 				$('.mg-contents').hide();
 				$('.circle').fadeOut();
 				$('.hideThis').show()
@@ -608,6 +603,7 @@ $(document).ready(function(){
    	 	}
     });
 	$('.skip-button').click(function(){
+		$('.universe').show()    			
 		$('.mg-contents').addClass('.flip2').hide();
 		$('.circle').fadeOut();
 		$('.hideThis').show()
@@ -640,9 +636,12 @@ function changeColor(){
 }
 var spinSpin = setInterval(changeColor, 300)
 
+/////////////////////////////
+/////////////////////////////
+///characters descriptions///
+/////////////////////////////
+/////////////////////////////
 $(document).ready(function(){
-
-
 var characters = [
 	{ "name": "Sansa Stark",
 	  "description": "Daughter of Eddard and Catelyn Stark"
@@ -686,6 +685,9 @@ var characters = [
 	{
 	  "name": "Catelyn Stark",
 	  "description": "Married to Eddard Stark-Daughter of Hoster Tully"
+	},
+	{ "name": "Paul Kang",
+	  "description": "Son of Moonsig and Yookyung Kang"
 	}
 ];
 
