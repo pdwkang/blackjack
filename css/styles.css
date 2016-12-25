@@ -10,7 +10,7 @@ body{
 	height: 650px;
 	position: relative;
 	margin: auto;
-	width: 1400px;
+	width: 1220px;
 
 }
 .score{
@@ -18,8 +18,9 @@ body{
 	/* border: 2px solid white; */
 	color: white;
 	position: absolute;
-	bottom: 580px;
-	right: 1300px;
+	bottom: 620px;
+	right: 950px;
+	width: 200px;
 }
 .flip2{
 	backface-visibility: hidden;
@@ -35,7 +36,7 @@ body{
 .theWholeWorld{	
 	font-family: "Bungee Inline";
 	font-size: 22px;
-	background-size: 100%;
+	/* background-size: 100%; */
 	height: 100%;
 	display: none;
 }
@@ -82,6 +83,9 @@ img {
 .bet-wrapper div{
 	display: inline-block;
 }
+/* button .doubleDown-button{
+	width: 100px;
+} */
 .frame{
  	background-image: url("../images/button.png");
  	background-repeat: no-repeat;
@@ -92,10 +96,9 @@ img {
  	width: 100px;
  	font-family: Frijole;
  	color: black;
- 	font-size: 17px;
- 	margin: 20px;
+ 	font-size: 16px;
+ 	margin: 25px;
 	box-shadow: 3px 3px 10px 5px #000;
-
 }
 .deal{
  	background-image: url("../images/deal.jpeg");
@@ -127,9 +130,14 @@ img {
 	background-image: url("../images/buttonHover.png");
 	color: blue;
 }
-button.doubleDown-button{
-	font-size: 13px;
-	line-height: 20px;
+/* button.doubleDown-button{
+	font-size: 15px;
+	line-height: 15px;
+	margin-top: 10px;
+	padding: 0;
+} */
+.margin-bot{
+	margin-bottom: -25px;
 }
 .frame:hover{
  	background-image: url("../images/buttonHover.png");
@@ -161,9 +169,7 @@ button.doubleDown-button{
 button.reset-bet{
 	font-size: 12px;
 }
-.margin-bot{
-	margin-top: -12px
-}
+
 .bet-square{
 	background: rgba(54, 25, 25, .5);
 	padding: 20px;
@@ -332,11 +338,12 @@ button.reset-bet{
 .player-cards{
 	margin-left: 20px;
 	position: absolute;
-	top: 250px;
+	top: 270px;
 }
 .dealer-cards{
 	margin-left: 20px;
 	position: absolute;
+	margin-top: 20px;
 }
 .bj-tile{
 	height: 165px;
