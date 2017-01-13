@@ -555,7 +555,6 @@ $(document).ready(function(){
 			mgHTML += '</div>';
 		mgHTML += '</div>';
 	}
-
    
     $('.mg-contents').html("MATCH ALL FOR +2000 COINS<br>" + mgHTML +
     	'<button class="skip-button frame">SKIP</button>');
@@ -573,12 +572,12 @@ $(document).ready(function(){
 				if(cardsUpImages[0].src == cardsUpImages[1].src){
     				cardsUp.addClass('matched');
     				cardsUp.removeClass('flip');
-					canClick =true;
+					canClick = true;
 					matchCounter++;
     			}else{
     				setTimeout(function(){
     					cardsUp.removeClass('flip')
-    					canClick =true;
+    					canClick = true;
     				}, 600)
     			}
     		};
@@ -701,3 +700,5 @@ var charactersHTML =''
 		$('.carousel-inner').html(charactersHTML)
 	}
 })
+
+

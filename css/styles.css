@@ -1,5 +1,6 @@
 body{
-	background-image: url("../images/background.jpg");
+	background-image: url("../images/background3.jpg");
+	background-size: 100vw;
 	overflow: hidden;
 }
 .hideThis{
@@ -593,7 +594,5 @@ button.reset-bet{
 }
 .GOTchar{
 	margin: auto;
-}
-.blue{
 	color: white;
 }
