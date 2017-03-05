@@ -73,7 +73,6 @@ $(document).ready(function(){
 			}
 			//first card during split			
 		}else if(hitCounter===7){
-			// console.log('aaa')
 			if(calculateTotal(firstPair,'player') < 21){
 				playerHands.push(theDeck.shift());		
 				var lastCardIndex = playerHands.length-1;
@@ -700,5 +699,4 @@ var charactersHTML =''
 		$('.carousel-inner').html(charactersHTML)
 	}
 })
-
 
